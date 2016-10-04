@@ -1,4 +1,4 @@
-package main;
+package com.windels.battleships;
 import java.util.Random;
 
 public class GameBoard implements java.io.Serializable {

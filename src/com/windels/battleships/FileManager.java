@@ -1,4 +1,4 @@
-package main;
+package com.windels.battleships;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
