@@ -10,7 +10,7 @@ public enum ShotResult {
 	
 	private final String message;
 	
-	private ShotResult(String aMessage) {
+	ShotResult(String aMessage) {
 		message = aMessage;
 	}
 	
