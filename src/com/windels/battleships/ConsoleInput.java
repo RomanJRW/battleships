@@ -21,6 +21,14 @@ public class ConsoleInput implements Input {
 		sc = new Scanner(System.in);
 		sc.useDelimiter(",");
 	}
+	
+	public String getInput()	{
+		String input = null;
+		while (sc.hasNextLine())	{
+			input = sc.nextLine();
+		}
+		return input;
+	}
 
 	public void runInput(Battleships bsGame)	{
 		bs = bsGame;
