@@ -7,8 +7,8 @@ public enum CommandManager {
 	EXITGAME("!q", "Exit Battleships"),
 	LISTGAMES("!g", "List saved games"),
 	HELPMENU("!h", "Open help menu"),
-	LOADGAME("!l", "Load a new game"),
-	SAVEGAME("!s", "Save current game");
+	LOADGAME("!l", "+ (file name) Load a new game"),
+	SAVEGAME("!s", "+ (file name) Save current game");
 	
 	private final String command;
 	private final String menuOption;
