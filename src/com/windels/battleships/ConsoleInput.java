@@ -7,7 +7,6 @@ import java.util.Scanner;
 public class ConsoleInput implements Input {
 
 	private Scanner sc;
-	private Battleships bs;
 	
 	private final String newGameCommand = "!n";
 	private final String mainMenuCommand = "!m";
@@ -21,47 +20,12 @@ public class ConsoleInput implements Input {
 		sc = new Scanner(System.in);
 		sc.useDelimiter(",");
 	}
-
-	public void runInput(Battleships bsGame)	{
-		bs = bsGame;
-		while (sc.hasNextLine())	{
-			String input = sc.nextLine();
-			if (input.charAt(0) == '!')	{
-				if (input.length() == 2)	{
-					switch (input) {
-					case mainMenuCommand: bs.goToMainMenu(); 
-							break;
-					case newGameCommand: bs.startNewGame();
-							break;
-					case listGamesCommand: bs.listSavedGames();
-							break;
-					case exitGameCommand: bs.exitGame();
-							break;
-					case helpMenuCommand: bs.listAllCommands();
-							break;
-					}
-				}
-				else if (input.length() > 3)	{
-					String fileName = input.substring(3);
-					if (input.substring(0, 2).equals(saveGameCommand))	{
-						bs.saveExistingGameToFile(fileName);
-					}
-					else if (input.substring(0, 2).equals(loadGameCommand))	{
-						bs.loadExistingGameFromFile(fileName);
-					}
-				}
-				else	{
-					invalidInput(input);
-				}
-			}
-			else if (isCorrectShotFormat(input))	{
-				bs.makeMove(input);
-			}
-			else	{
-				invalidInput(input);
-			}
-		}
+	
+	public String getInput()	{
+		return sc.nextLine();
 	}
+
+	
 	
 	public String getInputInstructions()	{
 		List<String> commandsList = new ArrayList<String>();
@@ -85,35 +49,4 @@ public class ConsoleInput implements Input {
 	public void close()	{
 		sc.close();
 	}
-	
-	//HELPER METHODS
-	
-	private void invalidInput(String invalidInput)	{
-		bs.sendInvalidCommand(invalidInput);
-	}
-	
-	private boolean isCorrectShotFormat(String input) {
-		if (input.length() == 2 || input.length() == 3)	{
-			return isValidRowFormat(input.substring(1)) && isValidColumnFormat(input.charAt(0));
-		}
-		return false;		
-	}
-
-	private boolean isValidRowFormat(String rowString) {
-		try	{
-			Integer.parseInt(rowString);
-		}
-		catch (NumberFormatException ex)	{
-			return false;
-		}
-		return true;
-	}
-
-	private boolean isValidColumnFormat(char columnString) {
-		if (Character.isUpperCase(columnString))	{
-			return true;
-		}
-		return false;
-	}
-	
 }

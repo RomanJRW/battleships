@@ -7,8 +7,8 @@ public enum CommandManager {
 	EXITGAME("!q", "Exit Battleships"),
 	LISTGAMES("!g", "List saved games"),
 	HELPMENU("!h", "Open help menu"),
-	LOADGAME("!l + (enter file name here)", "Load a new game"),
-	SAVEGAME("!s + (enter file name here)", "Save current game");
+	LOADGAME("!l", "Load a new game"),
+	SAVEGAME("!s", "Save current game");
 	
 	private final String command;
 	private final String menuOption;
@@ -24,5 +24,14 @@ public enum CommandManager {
 	
 	String getMenuOption()	{
 		return menuOption;
+	}
+	
+	public static CommandManager getCommand(String command) {
+	    for (CommandManager commandManager : values()) {
+	        if (commandManager.getCommand().equals(command)) {
+	            return commandManager;
+	        }
+	    }
+	    return null;
 	}
 }

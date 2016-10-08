@@ -118,11 +118,6 @@ public class ConsoleOutput implements Output {
 	}
 
 	@Override
-	public void displayCommands(String inputInstructions) {
-		System.out.println(inputInstructions);
-	}
-
-	@Override
 	public void displayNumberOfShipsRemaining(GameBoard gameBoard) {
 		System.out.println("There are still " + gameBoard.getNumberOfRemainingShips() + " left to find!");
 	}
@@ -135,6 +130,11 @@ public class ConsoleOutput implements Output {
 	@Override
 	public void displaySaveSuccessText() {
 		System.out.println("Game saved successfully");
+	}
+
+	@Override
+	public void displayCommands() {
+		
 	}
 
 }

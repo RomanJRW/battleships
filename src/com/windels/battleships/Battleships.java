@@ -41,21 +41,63 @@ public class Battleships {
 	private void run() {
 		output.displayIntro();
 		goToMainMenu();
-		input.runInput(this);
+		while (gameState != GameState.EXIT)	{
+			obtainInputAndPerformAction();			
+		}
+		closeGameAndExit();
 	}
 	
+	private void obtainInputAndPerformAction()	{
+		String command = input.getInput();
+			if (command.charAt(0) == '!')	{
+				CommandManager cm = CommandManager.getCommand(command.substring(0, 2));
+				if (cm != null && ((command.length() == 2) || (command.length() > 3 && (cm == CommandManager.LOADGAME || cm == CommandManager.SAVEGAME))))	{
+					
+					switch (cm) {
+					case MAINMENU:	goToMainMenu(); 
+									break;
+					case NEWGAME:	startNewGame();
+									break;
+					case LISTGAMES:	listSavedGames();
+									break;
+					case EXITGAME:	exitGame();
+									break;
+					case HELPMENU:	listAllCommands();
+									break;
+					case LOADGAME:	String loadFileName = command.substring(3);
+									loadExistingGameFromFile(loadFileName);
+									break;
+					case SAVEGAME:	String saveFileName = command.substring(3);
+									saveExistingGameToFile(saveFileName);
+									break;
+					}
+				}
+				else	{
+					informInvalidCommand(command);
+				}
+			}
+			else if (isCorrectShotFormat(command))	{
+				makeMove(command);
+			}
+			else	{
+				informInvalidCommand(command);
+			}
+	}
+	
+	
+	
 	//NOT SURE IF I WANT THIS. IF I'M USING IT, IT MIGHT IMPLY COUPLING THAT I DON'T WANT
-	public GameState getGameState()	{
+	GameState getGameState()	{
 		return this.gameState;
 	}
 	
-	public void goToMainMenu()	{
+	private void goToMainMenu()	{
 		gameState = GameState.MAIN_MENU;
 		output.displayMainMenu();
 		listAllCommands();
 	}
 	
-	public void startNewGame()	{
+	private void startNewGame()	{
 		if (gameState == GameState.MAIN_MENU)	{			
 			gameBoard = new GameBoard(boardHeight, boardWidth, new Ship[4]); //DEFAULT STANDARD GRID, CAN ADD VARIATIONS LATER
 			output.displayGameBoard(gameBoard);
@@ -66,7 +108,7 @@ public class Battleships {
 		}
 	}
 
-	public void listSavedGames()	{
+	private void listSavedGames()	{
 		if (gameState == GameState.MAIN_MENU || gameState == GameState.IN_PLAY)	{
 			output.displaySavedGames(fm.getFilesNamesList());
 		}
@@ -75,7 +117,7 @@ public class Battleships {
 		}
 	}
 	
-	public void loadExistingGameFromFile(String fileName)	{
+	private void loadExistingGameFromFile(String fileName)	{
 		if (gameState == GameState.MAIN_MENU)	{
 			try	{
 				gameBoard = fm.loadGame(fileName);
@@ -93,7 +135,7 @@ public class Battleships {
 		}
 	}
 	
-	public void saveExistingGameToFile(String fileName)	{
+	private void saveExistingGameToFile(String fileName)	{
 		if (gameState == GameState.IN_PLAY)	{
 			try	{
 				fm.saveGame(fileName, gameBoard);
@@ -110,7 +152,7 @@ public class Battleships {
 		}
 	}
 
-	public void makeMove(String shotInput)	{
+	private void makeMove(String shotInput)	{
 		if (gameState == GameState.IN_PLAY)	{
 			if (isShotValidGridLocation(shotInput))	{
 				ShotResult shotResult = gameBoard.takeShotAndGetResult(shotInput);
@@ -134,23 +176,26 @@ public class Battleships {
 		}
 	}
 	
-	public void listAllCommands() {
-		output.displayCommands(input.getInputInstructions());
+	private void listAllCommands() {
+		output.displayCommands();
 	}
 	
-	public void sendInvalidCommand(String invalidInput) {
+	private void informInvalidCommand(String invalidInput) {
 		output.displayInvalidCommandText(invalidInput);
 	}
 
-	public void exitGame()	{
+	private void exitGame()	{
 		if (gameState == GameState.MAIN_MENU)	{
-			//LATER ON, THERE MAY BE SOME OTHER TEARING DOWN CODE TO ADD IN HERE
-			input.close();
-			System.exit(0);
+			gameState = GameState.EXIT;
 		}
 		else	{
 			output.displayUnavailableInputText(); //PROVIDE MORE SPECIFIC TEXT DEPENDING ON ERROR AT SOME POINT
 		}
+	}
+
+	private void closeGameAndExit() {
+		input.close();
+		System.exit(0);
 	}
 	
 	//HELPERS
@@ -188,6 +233,30 @@ public class Battleships {
 	private void gamePlayMode()	{
 		gameState = GameState.IN_PLAY;
 		output.displayPromptForShot();
+	}
+	
+	private boolean isCorrectShotFormat(String input) {
+		if (input.length() == 2 || input.length() == 3)	{
+			return isValidRowFormat(input.substring(1)) && isValidColumnFormat(input.charAt(0));
+		}
+		return false;		
+	}
+
+	private boolean isValidRowFormat(String rowString) {
+		try	{
+			Integer.parseInt(rowString);
+		}
+		catch (NumberFormatException ex)	{
+			return false;
+		}
+		return true;
+	}
+
+	private boolean isValidColumnFormat(char columnString) {
+		if (Character.isUpperCase(columnString))	{
+			return true;
+		}
+		return false;
 	}
 	
 }
