@@ -1,7 +1,5 @@
 package com.windels.battleships;
 
-import java.util.List;
-
 public enum GameText {
 	
 	INTRO(new StringBuilder("")
