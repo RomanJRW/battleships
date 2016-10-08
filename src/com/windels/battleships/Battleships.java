@@ -44,6 +44,88 @@ public class Battleships {
 		input.runInput(this);
 	}
 	
+	
+	void obtainInputAndPerformAction()	{
+		String command = input.getInput();
+		while (sc.hasNextLine())	{
+			
+			if (command.charAt(0) == '!')	{
+				if (command.length() == 2)	{
+					switch (command) {
+					case mainMenuCommand: goToMainMenu(); 
+							break;
+					case newGameCommand: startNewGame();
+							break;
+					case listGamesCommand: listSavedGames();
+							break;
+					case exitGameCommand: exitGame();
+							break;
+					case helpMenuCommand: listAllCommands();
+							break;
+					}
+				}
+				else if (command.length() > 3)	{
+					String fileName = command.substring(3);
+					if (command.substring(0, 2).equals(saveGameCommand))	{
+						saveExistingGameToFile(fileName);
+					}
+					else if (command.substring(0, 2).equals(loadGameCommand))	{
+						loadExistingGameFromFile(fileName);
+					}
+				}
+				else	{
+					invalidInput(command);
+				}
+			}
+			else if (isCorrectShotFormat(command))	{
+				makeMove(command);
+			}
+			else	{
+				invalidInput(command);
+			}
+		}
+		
+		while (sc.hasNextLine())	{
+			String input = sc.nextLine();
+			if (input.charAt(0) == '!')	{
+				if (input.length() == 2)	{
+					switch (input) {
+					case mainMenuCommand: bs.goToMainMenu(); 
+							break;
+					case newGameCommand: bs.startNewGame();
+							break;
+					case listGamesCommand: bs.listSavedGames();
+							break;
+					case exitGameCommand: bs.exitGame();
+							break;
+					case helpMenuCommand: bs.listAllCommands();
+							break;
+					}
+				}
+				else if (input.length() > 3)	{
+					String fileName = input.substring(3);
+					if (input.substring(0, 2).equals(saveGameCommand))	{
+						bs.saveExistingGameToFile(fileName);
+					}
+					else if (input.substring(0, 2).equals(loadGameCommand))	{
+						bs.loadExistingGameFromFile(fileName);
+					}
+				}
+				else	{
+					invalidInput(input);
+				}
+			}
+			else if (isCorrectShotFormat(input))	{
+				bs.makeMove(input);
+			}
+			else	{
+				invalidInput(input);
+			}
+		}
+	}
+	
+	
+	
 	//NOT SURE IF I WANT THIS. IF I'M USING IT, IT MIGHT IMPLY COUPLING THAT I DON'T WANT
 	public GameState getGameState()	{
 		return this.gameState;

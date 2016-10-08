@@ -30,46 +30,7 @@ public class ConsoleInput implements Input {
 		return input;
 	}
 
-	public void runInput(Battleships bsGame)	{
-		bs = bsGame;
-		while (sc.hasNextLine())	{
-			String input = sc.nextLine();
-			if (input.charAt(0) == '!')	{
-				if (input.length() == 2)	{
-					switch (input) {
-					case mainMenuCommand: bs.goToMainMenu(); 
-							break;
-					case newGameCommand: bs.startNewGame();
-							break;
-					case listGamesCommand: bs.listSavedGames();
-							break;
-					case exitGameCommand: bs.exitGame();
-							break;
-					case helpMenuCommand: bs.listAllCommands();
-							break;
-					}
-				}
-				else if (input.length() > 3)	{
-					String fileName = input.substring(3);
-					if (input.substring(0, 2).equals(saveGameCommand))	{
-						bs.saveExistingGameToFile(fileName);
-					}
-					else if (input.substring(0, 2).equals(loadGameCommand))	{
-						bs.loadExistingGameFromFile(fileName);
-					}
-				}
-				else	{
-					invalidInput(input);
-				}
-			}
-			else if (isCorrectShotFormat(input))	{
-				bs.makeMove(input);
-			}
-			else	{
-				invalidInput(input);
-			}
-		}
-	}
+	
 	
 	public String getInputInstructions()	{
 		List<String> commandsList = new ArrayList<String>();
