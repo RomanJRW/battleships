@@ -27,7 +27,7 @@ public interface Output {
 
 	void displayPromptForShot();
 
-	void displayCommands(String inputInstructions);
+	void displayCommands();
 
 	void displayNumberOfShipsRemaining(GameBoard gameBoard);
 

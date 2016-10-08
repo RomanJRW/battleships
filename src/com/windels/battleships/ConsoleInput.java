@@ -7,7 +7,6 @@ import java.util.Scanner;
 public class ConsoleInput implements Input {
 
 	private Scanner sc;
-	private Battleships bs;
 	
 	private final String newGameCommand = "!n";
 	private final String mainMenuCommand = "!m";
@@ -23,11 +22,7 @@ public class ConsoleInput implements Input {
 	}
 	
 	public String getInput()	{
-		String input = null;
-		while (sc.hasNextLine())	{
-			input = sc.nextLine();
-		}
-		return input;
+		return sc.nextLine();
 	}
 
 	
@@ -54,35 +49,4 @@ public class ConsoleInput implements Input {
 	public void close()	{
 		sc.close();
 	}
-	
-	//HELPER METHODS
-	
-	private void invalidInput(String invalidInput)	{
-		bs.sendInvalidCommand(invalidInput);
-	}
-	
-	private boolean isCorrectShotFormat(String input) {
-		if (input.length() == 2 || input.length() == 3)	{
-			return isValidRowFormat(input.substring(1)) && isValidColumnFormat(input.charAt(0));
-		}
-		return false;		
-	}
-
-	private boolean isValidRowFormat(String rowString) {
-		try	{
-			Integer.parseInt(rowString);
-		}
-		catch (NumberFormatException ex)	{
-			return false;
-		}
-		return true;
-	}
-
-	private boolean isValidColumnFormat(char columnString) {
-		if (Character.isUpperCase(columnString))	{
-			return true;
-		}
-		return false;
-	}
-	
 }
