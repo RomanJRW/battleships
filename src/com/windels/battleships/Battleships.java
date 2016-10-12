@@ -145,7 +145,7 @@ public class Battleships {
 	}
 
 	private void makeMove(String shotInput)	{
-		if (gameState == GameState.IN_PLAY)	{
+		if (gameState == GameState.IN_PLAY && isCorrectShotFormat(shotInput))	{
 			if (isShotValidGridLocation(shotInput))	{
 				ShotResult shotResult = gameBoard.takeShotAndGetResult(shotInput);
 				output.printGameText(shotResult.getMessage());

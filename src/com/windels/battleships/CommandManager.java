@@ -8,7 +8,8 @@ public enum CommandManager {
 	LISTGAMES("!g", "List saved games"),
 	HELPMENU("!h", "Open help menu"),
 	LOADGAME("!l", "+ (file name) Load a new game"),
-	SAVEGAME("!s", "+ (file name) Save current game");
+	SAVEGAME("!s", "+ (file name) Save current game"),
+	SHOT("","");
 	
 	private final String command;
 	private final String menuOption;
