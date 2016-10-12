@@ -39,13 +39,13 @@ public class ConsoleInput implements Input {
 		StringBuilder helpText = new StringBuilder();
 		helpText.append("Here are the available commands. Please note, not all commands may be available\n");
 		helpText.append("at any given time");
-		helpText.append(ConsoleCommandManager.NEWGAME.getCommand() + "\t\t-\t" + "New game");
-		helpText.append(ConsoleCommandManager.MAINMENU.getCommand() + "\t\t-\t" + "Go to main menu");
-		helpText.append(ConsoleCommandManager.EXITGAME.getCommand() + "\t\t-\t" + "Exit Battleships");
-		helpText.append(ConsoleCommandManager.LISTGAMES.getCommand() + "\t\t-\t" + "List saved games");
-		helpText.append(ConsoleCommandManager.HELPMENU.getCommand() + "\t\t-\t" + "Open help menu");
-		helpText.append(ConsoleCommandManager.LOADGAME.getCommand() + " + (file name)" + "\t\t-\t" + "Load an existing game");
-		helpText.append(ConsoleCommandManager.SAVEGAME.getCommand() + " + (file name)" + "\t\t-\t" + "Save the current game");
+		helpText.append(ConsoleCommandManager.NEWGAME.getCommand() + "\t\t-\t" + "New game\n");
+		helpText.append(ConsoleCommandManager.MAINMENU.getCommand() + "\t\t-\t" + "Go to main menu\n");
+		helpText.append(ConsoleCommandManager.EXITGAME.getCommand() + "\t\t-\t" + "Exit Battleships\n");
+		helpText.append(ConsoleCommandManager.LISTGAMES.getCommand() + "\t\t-\t" + "List saved games\n");
+		helpText.append(ConsoleCommandManager.HELPMENU.getCommand() + "\t\t-\t" + "Open help menu\n");
+		helpText.append(ConsoleCommandManager.LOADGAME.getCommand() + " + (file name)" + "\t\t-\t" + "Load an existing game\n");
+		helpText.append(ConsoleCommandManager.SAVEGAME.getCommand() + " + (file name)" + "\t\t-\t" + "Save the current game\n");
 		return helpText.toString();
 	}
 }
