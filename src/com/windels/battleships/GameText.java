@@ -35,18 +35,15 @@ public enum GameText {
 	
 	LOADERROR("There was a problem when attempting to load the game. Game not loaded"),
 	
-	INVALIDCOMMAND("Command not valid: "),
+	INVALIDCOMMAND("Command not valid"),
 	
 	GAMEENDING(new StringBuilder()
 		.append("           ****************************************************************" + "\n")
 		.append("           *                  Congratulations, Captain!                   *" + "\n")
 		.append("           *     You have located and destroyed all of the enemy ships    *" + "\n")
 		.append("           ****************************************************************" + "\n")
-		.toString()),
-		
-	HELPMENU("Here are the available commands. Please note that not all commands\n"
-			+ "are available at any given time.");
-	
+		.toString());
+
 	private final String text;
 	
 	GameText(String someText)	{
