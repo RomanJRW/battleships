@@ -35,7 +35,7 @@ public enum GameText {
 	
 	LOADERROR("There was a problem when attempting to load the game. Game not loaded"),
 	
-	INVALIDCOMMAND("Command not valid: "),
+	INVALIDCOMMAND("Command not valid"),
 	
 	GAMEENDING(new StringBuilder()
 		.append("           ****************************************************************" + "\n")
