@@ -84,7 +84,7 @@ public class Battleships {
 	private void goToMainMenu()	{
 		gameState = GameState.MAIN_MENU;
 		output.printGameText(GameText.MAINMENU.getText());
-		listAllCommands();
+		helpMenu();
 	}
 	
 	private void startNewGame()	{
@@ -169,8 +169,7 @@ public class Battleships {
 	}
 	
 	private void helpMenu()	{
-		output.printGameText(GameText.HELPMENU.getText());
-		listAllCommands();
+		output.printGameText(input.getHelpText());
 	}
 	
 	
@@ -252,12 +251,4 @@ public class Battleships {
 		}
 		return false;
 	}
-	
-
-	private void listAllCommands() {
-		for (CommandManager command : CommandManager.values())	{
-			output.printGameText(command.getCommand() + "\t\t-\t" + command.getMenuOption());
-		}
-	}
-	
 }

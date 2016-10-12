@@ -2,27 +2,27 @@ package com.windels.battleships;
 
 class Command {
 	
-	private CommandManager type;
+	private ConsoleCommandManager type;
 	private String fileName;
 	private String shotLocation;
 	
-	Command(CommandManager commandType)	{
+	Command(ConsoleCommandManager commandType)	{
 		type = commandType;
 		fileName = null;
 		shotLocation = null;
 	}
 	
-	Command(CommandManager commandType, String aFileName)	{
+	Command(ConsoleCommandManager commandType, String aFileName)	{
 		this(commandType);
 		fileName = aFileName;
 	}
 	
 	Command(String aShotLocation)	{
-		this(CommandManager.SHOT);
+		this(ConsoleCommandManager.SHOT);
 		shotLocation = aShotLocation;
 	}
 	
-	CommandManager getType()	{
+	ConsoleCommandManager getType()	{
 		return type;
 	}
 	

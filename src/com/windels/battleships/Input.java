@@ -4,5 +4,6 @@ public interface Input {
 	
 	void close();
 	Command getInput();
-	
+	String getHelpText();
+
 }
