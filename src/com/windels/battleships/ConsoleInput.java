@@ -11,6 +11,10 @@ public class ConsoleInput implements Input {
 		sc.useDelimiter(",");
 	}
 	
+	ConsoleInput(String textInput)	{
+		sc = new Scanner(textInput);
+	}
+	
 	@Override
 	public Command getInput()	{
 		String input = sc.nextLine();
