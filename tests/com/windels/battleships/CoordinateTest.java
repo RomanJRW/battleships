@@ -11,7 +11,7 @@ public class CoordinateTest {
 	private Coordinate testCoord2;
 	
 	@Before
-	public void setUp() throws Exception {
+	public void setUp()	{
 		testCoord1 = new Coordinate(3, 2);
 		testCoord2 = new Coordinate(6, 7);
 	}
