@@ -1,4 +1,5 @@
 package com.windels.battleships;
+import java.util.Arrays;
 import java.util.Random;
 
 public class GameBoard implements java.io.Serializable {
@@ -15,21 +16,21 @@ public class GameBoard implements java.io.Serializable {
 	
 	private Random rand;
 	
-	public GameBoard(int gridHeight, int gridWidth, Ship[] ships)	{
-		this.gridWidth = gridWidth;
-		this.gridHeight = gridHeight;
-		this.shipGrid = new Ship[gridHeight][gridWidth];
-		this.shotGrid = new boolean[gridHeight][gridWidth];
-		this.totalNumberOfShotsTaken = 0;
-		this.ships = ships;
-		this.numberOfShips = ships.length;
-		this.rand = new Random();
-		generateAndPlaceShipsOnGrid();
+	public GameBoard(int aGridHeight, int aGridWidth, Ship[] someShips)	{
+		gridWidth = aGridWidth;
+		gridHeight = aGridHeight;
+		shipGrid = new Ship[gridHeight][gridWidth];
+		shotGrid = new boolean[gridHeight][gridWidth];
+		totalNumberOfShotsTaken = 0;
+		ships = someShips;
+		numberOfShips = ships.length;
+		rand = new Random();
 	}
 	
 	GameBoard(int aGridHeight, int aGridWidth, Ship[] someShips, long seed)	{
 		this(aGridHeight, aGridWidth, someShips);
 		this.rand = new Random(seed);
+		generateAndPlaceShipsOnGrid();
 	}
 	
 	
@@ -85,21 +86,32 @@ public class GameBoard implements java.io.Serializable {
 		catch (ClassCastException ex)	{
 			return ShotResult.INVALID;
 		}
+		catch (ArrayIndexOutOfBoundsException ex)	{
+			return ShotResult.INVALID;
+		}
 	}
 	
+	void generateAndPlaceShipsOnGrid()	{
+		generateShips();
+		placeGeneratedShipsOnGrid();
+	}
+	
+	Ship[] getShips()	{
+		Ship[] shipsCopy = Arrays.copyOf(ships, ships.length);
+		return shipsCopy;
+	}
 	
 	//HELPER METHODS
 	
-	private Ship getShipAtCoordinate(Coordinate coordinate)	{
-		return shipGrid[coordinate.getRow()][coordinate.getColumn()];
-	}
-	
-	private void generateAndPlaceShipsOnGrid()	{
-		generateShips();
+	private void placeGeneratedShipsOnGrid() {
 		for (int i = 0; i < numberOfShips; i ++)	{
 			Coordinate shipStartCoordinates = getStartCoordinatesForAvailableShipPlacement(ships[i]);
 			placeShipOnGrid(ships[i], shipStartCoordinates);
 		}
+	}
+	
+	private Ship getShipAtCoordinate(Coordinate coordinate)	{
+		return shipGrid[coordinate.getRow()][coordinate.getColumn()];
 	}
 
 	private void setGridCoordinateAsShot(Coordinate coordinate)	{

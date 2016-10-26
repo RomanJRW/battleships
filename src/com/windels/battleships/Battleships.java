@@ -90,6 +90,7 @@ public class Battleships {
 	private void startNewGame()	{
 		if (gameState == GameState.MAIN_MENU)	{			
 			gameBoard = new GameBoard(boardHeight, boardWidth, new Ship[4]); //DEFAULT STANDARD GRID, CAN ADD VARIATIONS LATER
+			gameBoard.generateAndPlaceShipsOnGrid();
 			output.renderGameBoard(gameBoard);
 			gamePlayMode();
 		}
