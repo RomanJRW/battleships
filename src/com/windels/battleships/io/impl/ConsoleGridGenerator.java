@@ -1,7 +1,7 @@
 package com.windels.battleships.io.impl;
 
-import com.windels.battleships.Coordinate;
-import com.windels.battleships.GameBoard;
+import com.windels.battleships.controller.Coordinate;
+import com.windels.battleships.controller.GameBoard;
 
 public class ConsoleGridGenerator {
 

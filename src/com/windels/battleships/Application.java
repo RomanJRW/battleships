@@ -5,6 +5,14 @@
  */
 package com.windels.battleships;
 
+import com.windels.battleships.controller.Battleships;
+import com.windels.battleships.io.impl.ConsoleInput;
+import com.windels.battleships.io.impl.ConsoleOutput;
+//import com.windels.battleships.io.impl.guiInput;
+//import com.windels.battleships.io.impl.guiOutput;
+import com.windels.battleships.io.Input;
+import com.windels.battleships.io.Output;
+
 /**
  *
  * @author joshw
@@ -14,7 +22,7 @@ public class Application {
     public static void main(String[] args) {
 		Input in = null;
 		Output out = null;
-		if (args.length == 1 && args[0] == "-gui")	{
+		if (args.length == 1 && args[0].equals("-gui"))	{
 			//in = new GuiInput();
 			//out = new GuiOutput();
 			System.out.println("This is where I would initialize in and out to gui objects");
