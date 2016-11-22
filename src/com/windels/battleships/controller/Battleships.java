@@ -1,4 +1,8 @@
-package com.windels.battleships;
+package com.windels.battleships.controller;
+
+import com.windels.battleships.io.impl.Command;
+import com.windels.battleships.io.Input;
+import com.windels.battleships.io.Output;
 
 public class Battleships {
 	
@@ -32,24 +36,24 @@ public class Battleships {
 		try {
 			switch (command.getType()) {
 				case MAINMENU:	goToMainMenu(); 
-								break;
+						break;
 				case NEWGAME:	startNewGame();
-								break;
+						break;
 				case LISTGAMES:	listSavedGames();
-								break;
+						break;
 				case EXITGAME:	exitGame();
-								break;
+						break;
 				case HELPMENU:	helpMenu();
-								break;
+						break;
 				case LOADGAME:	String loadFileName = command.getFileName();
-								loadExistingGameFromFile(loadFileName);
-								break;
+						loadExistingGameFromFile(loadFileName);
+						break;
 				case SAVEGAME:	String saveFileName = command.getFileName();
-								saveExistingGameToFile(saveFileName);
-								break;
-				case SHOT:		String shotInput = command.getShotLocation();
-								makeMove(shotInput);
-								break;
+						saveExistingGameToFile(saveFileName);
+						break;
+				case SHOT:	String shotInput = command.getShotLocation();
+						makeMove(shotInput);
+						break;
 			}
 		} catch (NullPointerException e) {
 			informInvalidCommand();
