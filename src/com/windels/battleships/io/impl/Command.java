@@ -1,6 +1,4 @@
-package com.windels.battleships.io;
-
-import com.windels.battleships.ConsoleCommandManager;
+package com.windels.battleships.io.impl;
 
 public class Command {
 	
@@ -24,15 +22,15 @@ public class Command {
 		shotLocation = aShotLocation;
 	}
 	
-	ConsoleCommandManager getType()	{
+	public ConsoleCommandManager getType()	{
 		return type;
 	}
 	
-	String getFileName()	{
+	public String getFileName()	{
 		return fileName;
 	}
 	
-	String getShotLocation()	{
+	public String getShotLocation()	{
 		return shotLocation;
 	}
 

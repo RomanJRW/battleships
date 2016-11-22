@@ -1,5 +1,6 @@
-package com.windels.battleships;
+package com.windels.battleships.io.impl;
 
+import com.windels.battleships.io.Input;
 import java.util.Scanner;
 
 public class ConsoleInput implements Input {
@@ -43,13 +44,13 @@ public class ConsoleInput implements Input {
 		StringBuilder helpText = new StringBuilder();
 		helpText.append("Here are the available commands. Please note, not all commands may be available\n");
 		helpText.append("at any given time\n");
-		helpText.append(ConsoleCommandManager.NEWGAME.getCommand() + "\t\t\t-\t" + "New game\n");
-		helpText.append(ConsoleCommandManager.MAINMENU.getCommand() + "\t\t\t-\t" + "Go to main menu\n");
-		helpText.append(ConsoleCommandManager.EXITGAME.getCommand() + "\t\t\t-\t" + "Exit Battleships\n");
-		helpText.append(ConsoleCommandManager.LISTGAMES.getCommand() + "\t\t\t-\t" + "List saved games\n");
-		helpText.append(ConsoleCommandManager.HELPMENU.getCommand() + "\t\t\t-\t" + "Open help menu\n");
-		helpText.append(ConsoleCommandManager.LOADGAME.getCommand() + " + (file name)" + "\t-\t" + "Load an existing game\n");
-		helpText.append(ConsoleCommandManager.SAVEGAME.getCommand() + " + (file name)" + "\t-\t" + "Save the current game\n");
+		helpText.append(ConsoleCommandManager.NEWGAME.getCommand()).append("\t\t\t-\t").append("New game\n");
+		helpText.append(ConsoleCommandManager.MAINMENU.getCommand()).append("\t\t\t-\t").append("Go to main menu\n");
+		helpText.append(ConsoleCommandManager.EXITGAME.getCommand()).append("\t\t\t-\t").append("Exit Battleships\n");
+		helpText.append(ConsoleCommandManager.LISTGAMES.getCommand()).append("\t\t\t-\t").append("List saved games\n");
+		helpText.append(ConsoleCommandManager.HELPMENU.getCommand()).append("\t\t\t-\t").append("Open help menu\n");
+		helpText.append(ConsoleCommandManager.LOADGAME.getCommand()).append(" + (file name)").append("\t-\t").append("Load an existing game\n");
+		helpText.append(ConsoleCommandManager.SAVEGAME.getCommand()).append(" + (file name)").append("\t-\t").append("Save the current game\n");
 		return helpText.toString();
 	}
 }
