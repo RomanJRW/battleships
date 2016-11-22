@@ -1,4 +1,4 @@
-package com.windels.battleships;
+package com.windels.battleships.controller;
 
 public enum GameState {
 		

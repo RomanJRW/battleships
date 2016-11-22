@@ -1,5 +1,7 @@
-package com.windels.battleships;
+package com.windels.battleships.io.impl;
 
+import com.windels.battleships.controller.Coordinate;
+import com.windels.battleships.controller.GameBoard;
 import static org.junit.Assert.*;
 
 import static org.mockito.Mockito.mock;
