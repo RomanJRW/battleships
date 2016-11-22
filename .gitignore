@@ -12,6 +12,13 @@ dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
 
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
 
 ### Eclipse ###
 
