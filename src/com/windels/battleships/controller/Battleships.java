@@ -156,11 +156,6 @@ public class Battleships {
 	private void helpMenu()	{
 		output.printGameText(input.getHelpText());
 	}
-	
-	
-	private void informInvalidCommand() {
-		output.printGameText(GameText.INVALIDCOMMAND.getText());
-	}
 
 	private void exitGame()	{
 		if (gameState == GameState.MAIN_MENU)	{
