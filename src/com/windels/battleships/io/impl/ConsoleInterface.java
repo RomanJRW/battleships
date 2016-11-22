@@ -12,16 +12,20 @@ import com.windels.battleships.io.Output;
  *
  * @author joshw
  */
-public abstract class Interface {
-    private Input input;
-    private Output output;
+public class ConsoleInterface extends UserInterface {
     
-    public Interface(Input anInput, Output anOutput)  {
-        input = anInput;
-        output = anOutput;
+    public ConsoleInterface()    {
+        input = new ConsoleInput();
+        output = new ConsoleOutput();
     }
     
-    public abstract void getInput();
-    public abstract void getOutput();
+    @Override
+    public Output getOutput() {
+        return output;
+    }
     
+    @Override
+    public Input getInput() {
+        return input;
+    }
 }

@@ -1,13 +1,13 @@
 package com.windels.battleships.controller;
 
 import com.windels.battleships.io.impl.Command;
-import com.windels.battleships.io.Input;
-import com.windels.battleships.io.Output;
+import com.windels.battleships.io.impl.UserInterface;
 
 public class Battleships {
 	
-	private Input input;
-	private Output output;
+	//private Input input;
+	//private Output output;
+        private UserInterface ui;
 	private GameBoard gameBoard;
 	private GameState gameState;
 	private FileManager fm;
@@ -15,15 +15,16 @@ public class Battleships {
 	private final int boardHeight = 10;
 	private final int boardWidth = 10;
 	
-	public Battleships(Input anInput, Output anOutput)	{
-		this.input = anInput;
-		this.output = anOutput;
+	public Battleships(UserInterface userInterface)	{
+		//this.input = anInput;
+		//this.output = anOutput;
+                ui = userInterface;
 		this.fm = new FileManager();
 		gameState = GameState.INTRO;
 	}
 
 	public void run() {
-		output.printGameText(GameText.INTRO.getText());
+		ui.getOutput().printGameText(GameText.INTRO.getText());
 		goToMainMenu();
 		while (gameState != GameState.EXIT)	{
 			obtainInputAndPerformAction();			
@@ -32,7 +33,7 @@ public class Battleships {
 	}
 	
 	private void obtainInputAndPerformAction()	{
-		Command command = input.getUserInput();
+		Command command = ui.getInput().getUserInput();
                 if (command != null)    {
                     switch (command.getType()) {
 			case MAINMENU:	goToMainMenu(); 
@@ -67,7 +68,7 @@ public class Battleships {
 	
 	private void goToMainMenu()	{
 		gameState = GameState.MAIN_MENU;
-		output.printGameText(GameText.MAINMENU.getText());
+		ui.getOutput().printGameText(GameText.MAINMENU.getText());
 		helpMenu();
 	}
 	
@@ -75,22 +76,22 @@ public class Battleships {
 		if (gameState == GameState.MAIN_MENU)	{			
 			gameBoard = new GameBoard(boardHeight, boardWidth, new Ship[4]); //DEFAULT STANDARD GRID, CAN ADD VARIATIONS LATER
 			gameBoard.generateAndPlaceShipsOnGrid();
-			output.renderGameBoard(gameBoard);
+			ui.getOutput().renderGameBoard(gameBoard);
 			gamePlayMode();
 		}
 		else	{
-			output.printGameText(GameText.UNAVAILABLEINPUT.getText()); //PROVIDE MORE SPECIFIC TEXT DEPENDING ON ERROR AT SOME POINT
+			ui.getOutput().printGameText(GameText.UNAVAILABLEINPUT.getText()); //PROVIDE MORE SPECIFIC TEXT DEPENDING ON ERROR AT SOME POINT
 		}
 	}
 
 	private void listSavedGames()	{
 		if (gameState == GameState.MAIN_MENU || gameState == GameState.IN_PLAY)	{
 			for (int i = 0; i < fm.getFilesNamesList().size(); i ++)	{
-				output.printGameText(fm.getFilesNamesList().get(i));
+				ui.getOutput().printGameText(fm.getFilesNamesList().get(i));
 			}
 		}
 		else	{
-			output.printGameText(GameText.UNAVAILABLEINPUT.getText()); //PROVIDE MORE SPECIFIC TEXT DEPENDING ON ERROR AT SOME POINT
+			ui.getOutput().printGameText(GameText.UNAVAILABLEINPUT.getText()); //PROVIDE MORE SPECIFIC TEXT DEPENDING ON ERROR AT SOME POINT
 		}
 	}
 	
@@ -98,17 +99,17 @@ public class Battleships {
 		if (gameState == GameState.MAIN_MENU)	{
 			try	{
 				gameBoard = fm.loadGame(fileName);
-				output.printGameText(GameText.LOADSUCCESS.getText());
-				output.renderGameBoard(gameBoard);
+				ui.getOutput().printGameText(GameText.LOADSUCCESS.getText());
+				ui.getOutput().renderGameBoard(gameBoard);
 				gamePlayMode();
 			}
 			catch (Exception ex)	{
-				output.printGameText(GameText.LOADERROR.getText());
+				ui.getOutput().printGameText(GameText.LOADERROR.getText());
 				goToMainMenu();
 			}
 		}
 		else	{
-			output.printGameText(GameText.UNAVAILABLEINPUT.getText()); //PROVIDE MORE SPECIFIC TEXT DEPENDING ON ERROR AT SOME POINT
+			ui.getOutput().printGameText(GameText.UNAVAILABLEINPUT.getText()); //PROVIDE MORE SPECIFIC TEXT DEPENDING ON ERROR AT SOME POINT
 		}
 	}
 	
@@ -116,16 +117,16 @@ public class Battleships {
 		if (gameState == GameState.IN_PLAY)	{
 			try	{
 				fm.saveGame(fileName, gameBoard);
-				output.printGameText(GameText.SAVESUCCESS.getText());
+				ui.getOutput().printGameText(GameText.SAVESUCCESS.getText());
 				gamePlayMode();
 			}
 			catch (Exception ex)	{
 				ex.printStackTrace();
-				output.printGameText(GameText.SAVEERROR.getText());
+				ui.getOutput().printGameText(GameText.SAVEERROR.getText());
 			}
 		}
 		else	{
-			output.printGameText(GameText.UNAVAILABLEINPUT.getText()); //PROVIDE MORE SPECIFIC TEXT DEPENDING ON ERROR AT SOME POINT
+			ui.getOutput().printGameText(GameText.UNAVAILABLEINPUT.getText()); //PROVIDE MORE SPECIFIC TEXT DEPENDING ON ERROR AT SOME POINT
 		}
 	}
 
@@ -133,28 +134,28 @@ public class Battleships {
 		if (gameState == GameState.IN_PLAY && isCorrectShotFormat(shotInput))	{
 			if (isShotValidGridLocation(shotInput))	{
 				ShotResult shotResult = gameBoard.takeShotAndGetResult(shotInput);
-				output.printGameText(shotResult.getMessage());
-				output.printGameText(GameText.SHIPSREMAINING.getText() + gameBoard.getNumberOfRemainingShips());
-				output.renderGameBoard(gameBoard);
+				ui.getOutput().printGameText(shotResult.getMessage());
+				ui.getOutput().printGameText(GameText.SHIPSREMAINING.getText() + gameBoard.getNumberOfRemainingShips());
+				ui.getOutput().renderGameBoard(gameBoard);
 				if (gameBoard.areAllShipsSunk())	{
 					gameState = GameState.GAME_ENDED;
-					output.renderGameBoard(gameBoard);
+					ui.getOutput().renderGameBoard(gameBoard);
 				}
 				else	{
 					gamePlayMode();
 				}
 			}
 			else	{
-				output.printGameText(GameText.INVALIDSHOT.getText());
+				ui.getOutput().printGameText(GameText.INVALIDSHOT.getText());
 			}
 		}
 		else	{
-			output.printGameText(GameText.UNAVAILABLEINPUT.getText()); //PROVIDE MORE SPECIFIC TEXT DEPENDING ON ERROR AT SOME POINT
+			ui.getOutput().printGameText(GameText.UNAVAILABLEINPUT.getText()); //PROVIDE MORE SPECIFIC TEXT DEPENDING ON ERROR AT SOME POINT
 		}
 	}
 	
 	private void helpMenu()	{
-		output.printGameText(input.getHelpText());
+		ui.getOutput().printGameText(ui.getInput().getHelpText());
 	}
 
 	private void exitGame()	{
@@ -162,12 +163,12 @@ public class Battleships {
 			gameState = GameState.EXIT;
 		}
 		else	{
-			output.printGameText(GameText.UNAVAILABLEINPUT.getText()); //PROVIDE MORE SPECIFIC TEXT DEPENDING ON ERROR AT SOME POINT
+			ui.getOutput().printGameText(GameText.UNAVAILABLEINPUT.getText()); //PROVIDE MORE SPECIFIC TEXT DEPENDING ON ERROR AT SOME POINT
 		}
 	}
 
 	private void closeGameAndExit() {
-		input.close();
+		ui.getInput().close();
 		System.exit(0);
 	}
 	
@@ -205,7 +206,7 @@ public class Battleships {
 	
 	private void gamePlayMode()	{
 		gameState = GameState.IN_PLAY;
-		output.printGameText(GameText.SHOTPROMPT.getText());
+		ui.getOutput().printGameText(GameText.SHOTPROMPT.getText());
 	}
 	
 	private boolean isCorrectShotFormat(String input) {

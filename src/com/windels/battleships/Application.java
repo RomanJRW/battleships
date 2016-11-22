@@ -12,6 +12,8 @@ import com.windels.battleships.io.impl.ConsoleOutput;
 //import com.windels.battleships.io.impl.guiOutput;
 import com.windels.battleships.io.Input;
 import com.windels.battleships.io.Output;
+import com.windels.battleships.io.impl.ConsoleInterface;
+import com.windels.battleships.io.impl.UserInterface;
 
 /**
  *
@@ -20,11 +22,11 @@ import com.windels.battleships.io.Output;
 public class Application {
     
     public static void main(String[] args) {
-		Input in = null;
-		Output out = null;
+                UserInterface ui = null;
 		if (args.length == 1 && args[0].equals("-gui"))	{
 			//in = new GuiInput();
 			//out = new GuiOutput();
+                        //ui = new GuiInterface();
 			System.out.println("This is where I would initialize in and out to gui objects");
 		}
 		else if (args.length > 0)	{
@@ -32,10 +34,9 @@ public class Application {
 			System.exit(1);
 		}
 		else	{
-			in = new ConsoleInput();
-			out = new ConsoleOutput();
+			ui = new ConsoleInterface();
 		}
-		Battleships bs = new Battleships(in, out);
+		Battleships bs = new Battleships(ui);
 		bs.run();
 	}
 }
