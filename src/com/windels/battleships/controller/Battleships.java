@@ -33,31 +33,31 @@ public class Battleships {
 	
 	private void obtainInputAndPerformAction()	{
 		Command command = input.getInput();
-		try {
-			switch (command.getType()) {
-				case MAINMENU:	goToMainMenu(); 
-						break;
-				case NEWGAME:	startNewGame();
-						break;
-				case LISTGAMES:	listSavedGames();
-						break;
-				case EXITGAME:	exitGame();
-						break;
-				case HELPMENU:	helpMenu();
-						break;
-				case LOADGAME:	String loadFileName = command.getFileName();
-						loadExistingGameFromFile(loadFileName);
-						break;
-				case SAVEGAME:	String saveFileName = command.getFileName();
-						saveExistingGameToFile(saveFileName);
-						break;
-				case SHOT:	String shotInput = command.getShotLocation();
-						makeMove(shotInput);
-						break;
+                if (command != null)    {
+                    switch (command.getType()) {
+			case MAINMENU:	goToMainMenu(); 
+					break;
+			case NEWGAME:	startNewGame();
+					break;
+			case LISTGAMES:	listSavedGames();
+					break;
+			case EXITGAME:	exitGame();
+					break;
+			case HELPMENU:	helpMenu();
+					break;
+			case LOADGAME:	String loadFileName = command.getFileName();
+					loadExistingGameFromFile(loadFileName);
+					break;				
+                        case SAVEGAME:	String saveFileName = command.getFileName();
+					saveExistingGameToFile(saveFileName);
+					break;
+			case SHOT:	String shotInput = command.getShotLocation();
+					makeMove(shotInput);
+					break;
 			}
-		} catch (NullPointerException e) {
-			informInvalidCommand();
-		}
+                }
+		
+		
 	}
 	
 	//NOT SURE IF I WANT THIS. IF I'M USING IT, IT MIGHT IMPLY COUPLING THAT I DON'T WANT
