@@ -32,7 +32,7 @@ public class Battleships {
 	}
 	
 	private void obtainInputAndPerformAction()	{
-		Command command = input.getInput();
+		Command command = input.getUserInput();
                 if (command != null)    {
                     switch (command.getType()) {
 			case MAINMENU:	goToMainMenu(); 

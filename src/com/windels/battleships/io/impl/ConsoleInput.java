@@ -17,7 +17,7 @@ public class ConsoleInput implements Input {
 	}
 	
 	@Override
-	public Command getInput()	{
+	public Command getUserInput()	{
 		String input = sc.nextLine();
 		if (input.charAt(0) == '!' && input.length() >= 2)	{
 			ConsoleCommandManager cmType = ConsoleCommandManager.getCommand(input.substring(0, 2));
