@@ -1,4 +1,8 @@
-package com.windels.battleships;
+package com.windels.battleships.controller;
+
+import com.windels.battleships.io.impl.Command;
+import com.windels.battleships.io.Input;
+import com.windels.battleships.io.Output;
 
 public class Battleships {
 	
@@ -11,34 +15,14 @@ public class Battleships {
 	private final int boardHeight = 10;
 	private final int boardWidth = 10;
 	
-	private Battleships(Input anInput, Output anOutput)	{
+	public Battleships(Input anInput, Output anOutput)	{
 		this.input = anInput;
 		this.output = anOutput;
 		this.fm = new FileManager();
 		gameState = GameState.INTRO;
 	}
-	
-	public static void main(String[] args) {
-		Input in = null;
-		Output out = null;
-		if (args.length == 1 && args[0] == "-gui")	{
-			//in = new GuiInput();
-			//out = new GuiOutput();
-			System.out.println("This is where I would initialize in and out to gui objects");
-		}
-		else if (args.length > 0)	{
-			System.out.println("Invalid arguments provided");
-			System.exit(1);
-		}
-		else	{
-			in = new ConsoleInput();
-			out = new ConsoleOutput();
-		}
-		Battleships bs = new Battleships(in, out);
-		bs.run();
-	}
 
-	private void run() {
+	public void run() {
 		output.printGameText(GameText.INTRO.getText());
 		goToMainMenu();
 		while (gameState != GameState.EXIT)	{
@@ -52,24 +36,24 @@ public class Battleships {
 		try {
 			switch (command.getType()) {
 				case MAINMENU:	goToMainMenu(); 
-								break;
+						break;
 				case NEWGAME:	startNewGame();
-								break;
+						break;
 				case LISTGAMES:	listSavedGames();
-								break;
+						break;
 				case EXITGAME:	exitGame();
-								break;
+						break;
 				case HELPMENU:	helpMenu();
-								break;
+						break;
 				case LOADGAME:	String loadFileName = command.getFileName();
-								loadExistingGameFromFile(loadFileName);
-								break;
+						loadExistingGameFromFile(loadFileName);
+						break;
 				case SAVEGAME:	String saveFileName = command.getFileName();
-								saveExistingGameToFile(saveFileName);
-								break;
-				case SHOT:		String shotInput = command.getShotLocation();
-								makeMove(shotInput);
-								break;
+						saveExistingGameToFile(saveFileName);
+						break;
+				case SHOT:	String shotInput = command.getShotLocation();
+						makeMove(shotInput);
+						break;
 			}
 		} catch (NullPointerException e) {
 			informInvalidCommand();

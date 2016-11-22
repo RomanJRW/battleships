@@ -1,4 +1,4 @@
-package com.windels.battleships;
+package com.windels.battleships.io.impl;
 
 public enum ConsoleCommandManager {
 	
@@ -17,7 +17,7 @@ public enum ConsoleCommandManager {
 		command = aCommand;
 	}
 	
-	String getCommand()	{
+	public String getCommand()	{
 		return command;
 	}
 	

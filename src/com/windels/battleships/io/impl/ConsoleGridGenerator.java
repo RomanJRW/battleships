@@ -1,11 +1,14 @@
-package com.windels.battleships;
+package com.windels.battleships.io.impl;
+
+import com.windels.battleships.controller.Coordinate;
+import com.windels.battleships.controller.GameBoard;
 
 public class ConsoleGridGenerator {
 
 	ConsoleGridGenerator()	{
 	}
 	
-	String generateGrid(GameBoard aGameBoard)	{
+	public String generateGrid(GameBoard aGameBoard)	{
 		StringBuilder grid = new StringBuilder();
 		grid.append("\t");
 		for (int i = 0; i < aGameBoard.getGridWidth(); i++) {

@@ -1,4 +1,6 @@
-package com.windels.battleships;
+package com.windels.battleships.io;
+
+import com.windels.battleships.controller.GameBoard;
 
 public interface Output {
 

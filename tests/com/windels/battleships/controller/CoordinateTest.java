@@ -1,4 +1,4 @@
-package com.windels.battleships;
+package com.windels.battleships.controller;
 
 import static org.junit.Assert.*;
 

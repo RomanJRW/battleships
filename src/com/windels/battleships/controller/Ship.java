@@ -1,4 +1,4 @@
-package com.windels.battleships;
+package com.windels.battleships.controller;
 
 public class Ship implements java.io.Serializable {
 	

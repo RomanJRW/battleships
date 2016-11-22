@@ -1,4 +1,7 @@
-package com.windels.battleships;
+package com.windels.battleships.io.impl;
+
+import com.windels.battleships.controller.GameBoard;
+import com.windels.battleships.io.Output;
 
 public class ConsoleOutput implements Output {
 	
