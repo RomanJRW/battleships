@@ -1,4 +1,4 @@
-package com.windels.battleships;
+package com.windels.battleships.io;
 
 public interface Input {
 	

@@ -1,6 +1,8 @@
-package com.windels.battleships;
+package com.windels.battleships.io;
 
-class Command {
+import com.windels.battleships.ConsoleCommandManager;
+
+public class Command {
 	
 	private ConsoleCommandManager type;
 	private String fileName;
