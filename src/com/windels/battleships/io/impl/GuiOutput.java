@@ -34,6 +34,8 @@ public class GuiOutput extends javax.swing.JFrame implements Output {
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         battleShipsGridArea = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        gridOutput = new javax.swing.JTextArea();
         outputTextPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         outputTextArea = new javax.swing.JTextArea();
@@ -69,6 +71,10 @@ public class GuiOutput extends javax.swing.JFrame implements Output {
         javax.swing.JPanel gridLocC1 = new javax.swing.JPanel();
         javax.swing.JPanel gridLocC2 = new javax.swing.JPanel();
 
+        gridOutput.setColumns(20);
+        gridOutput.setRows(5);
+        jScrollPane2.setViewportView(gridOutput);
+
         add(gridLocA1);
         add(gridLocA2);
         add(gridLocB1);
@@ -80,13 +86,20 @@ public class GuiOutput extends javax.swing.JFrame implements Output {
         battleShipsGridArea.setLayout(battleShipsGridAreaLayout);
         battleShipsGridAreaLayout.setHorizontalGroup(
             battleShipsGridAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 453, Short.MAX_VALUE)
+            .addGroup(battleShipsGridAreaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
+                .addContainerGap())
         );
         battleShipsGridAreaLayout.setVerticalGroup(
             battleShipsGridAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 205, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, battleShipsGridAreaLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
+        outputTextArea.setEditable(false);
         outputTextArea.setColumns(20);
         outputTextArea.setRows(5);
         jScrollPane1.setViewportView(outputTextArea);
@@ -103,8 +116,8 @@ public class GuiOutput extends javax.swing.JFrame implements Output {
         outputTextPanelLayout.setVerticalGroup(
             outputTextPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, outputTextPanelLayout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -122,7 +135,7 @@ public class GuiOutput extends javax.swing.JFrame implements Output {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(7, Short.MAX_VALUE)
                 .addComponent(battleShipsGridArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(outputTextPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -133,9 +146,11 @@ public class GuiOutput extends javax.swing.JFrame implements Output {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel battleShipsGridArea;
+    private javax.swing.JTextArea gridOutput;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea outputTextArea;
     private javax.swing.JPanel outputTextPanel;
     // End of variables declaration//GEN-END:variables
@@ -143,12 +158,15 @@ public class GuiOutput extends javax.swing.JFrame implements Output {
     //Start of Josh custom methods
     @Override
     public void renderGameBoard(GameBoard gameBoard) {
-
+        gridOutput.setText(ConsoleGridGenerator.generateSmallGrid(gameBoard));
+        gridOutput.append("\n\n");
+        gridOutput.append(ConsoleGridGenerator.generateLargeGrid(gameBoard));
     }
 
     @Override
     public void printGameText(String text) {
-        outputTextArea.setText(text);
+        outputTextArea.append(text + "\n");
+        outputTextArea.setCaretPosition(outputTextArea.getDocument().getLength());
         //outputTextArea.setText("JoshTest");
     }
     //End of Josh custom methods

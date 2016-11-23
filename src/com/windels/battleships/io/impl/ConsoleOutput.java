@@ -4,16 +4,10 @@ import com.windels.battleships.controller.GameBoard;
 import com.windels.battleships.io.Output;
 
 public class ConsoleOutput implements Output {
-	
-	private ConsoleGridGenerator gridGenerator;
-	
-	public ConsoleOutput()	{
-		gridGenerator = new ConsoleGridGenerator();
-	}
 		
 	@Override
 	public void renderGameBoard(GameBoard aGameBoard)	{
-		String grid = gridGenerator.generateGrid(aGameBoard);
+		String grid = ConsoleGridGenerator.generateLargeGrid(aGameBoard);
 		System.out.println(grid);
 	}
 	

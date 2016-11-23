@@ -6,6 +6,8 @@
 package com.windels.battleships.io.impl;
 
 import com.windels.battleships.io.Input;
+import java.util.LinkedList;
+import java.util.Queue;
 
 
 /**
@@ -148,17 +150,17 @@ public class GuiInput extends javax.swing.JFrame implements Input {
     }// </editor-fold>//GEN-END:initComponents
 
     private void newGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGameButtonActionPerformed
-        userInput = new Command(ConsoleCommandManager.NEWGAME);
+        userInputs.add(new Command(ConsoleCommandManager.NEWGAME));
     }//GEN-LAST:event_newGameButtonActionPerformed
 
     private void shootButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shootButtonActionPerformed
         String shotLocation = shotTextField.getText();
-        userInput = new Command(shotLocation);
+        userInputs.add(new Command(shotLocation));
         shotTextField.setText("");
     }//GEN-LAST:event_shootButtonActionPerformed
 
     private void exitGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitGameButtonActionPerformed
-        userInput = new Command(ConsoleCommandManager.EXITGAME);
+        userInputs.add(new Command(ConsoleCommandManager.EXITGAME));
     }//GEN-LAST:event_exitGameButtonActionPerformed
 
     
@@ -176,13 +178,13 @@ public class GuiInput extends javax.swing.JFrame implements Input {
     // End of variables declaration//GEN-END:variables
 
     //Start of Josh custom variable declaration
-    private Command userInput;
+    private Queue<Command> userInputs = new LinkedList<Command>();
     //End of custom variable declaration
     
     //Start of Josh custom methods
     @Override
     public Command getUserInput()   {
-        return userInput;
+        return userInputs.poll();
     }
     
     @Override
