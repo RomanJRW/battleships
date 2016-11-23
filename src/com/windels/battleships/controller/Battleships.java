@@ -33,7 +33,9 @@ public class Battleships {
 	
 	private void obtainInputAndPerformAction()	{
 		Command command = input.getUserInput();
+                System.out.println(command);
                 if (command != null)    {
+                    System.out.println(command.getType());
                     switch (command.getType()) {
 			case MAINMENU:	goToMainMenu(); 
 					break;
@@ -54,8 +56,9 @@ public class Battleships {
 			case SHOT:	String shotInput = command.getShotLocation();
 					makeMove(shotInput);
 					break;
+                        default:        break;
 			}
-                }
+               }
 		
 		
 	}
@@ -71,16 +74,12 @@ public class Battleships {
 		helpMenu();
 	}
 	
-	private void startNewGame()	{
-		if (gameState == GameState.MAIN_MENU)	{			
-			gameBoard = new GameBoard(boardHeight, boardWidth, new Ship[4]); //DEFAULT STANDARD GRID, CAN ADD VARIATIONS LATER
-			gameBoard.generateAndPlaceShipsOnGrid();
-			output.renderGameBoard(gameBoard);
-			gamePlayMode();
-		}
-		else	{
-			output.printGameText(GameText.UNAVAILABLEINPUT.getText()); //PROVIDE MORE SPECIFIC TEXT DEPENDING ON ERROR AT SOME POINT
-		}
+	private void startNewGame()	{		
+            gameBoard = new GameBoard(boardHeight, boardWidth, new Ship[4]); //DEFAULT STANDARD GRID, CAN ADD VARIATIONS LATER
+            gameBoard.generateAndPlaceShipsOnGrid();
+            output.printGameText(GameText.NEWGAME.getText());
+            output.renderGameBoard(gameBoard);
+            gamePlayMode();
 	}
 
 	private void listSavedGames()	{
