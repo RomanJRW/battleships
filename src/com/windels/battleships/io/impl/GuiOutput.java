@@ -36,9 +36,15 @@ public class GuiOutput extends javax.swing.JFrame implements Output {
         battleShipsGridArea = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         gridOutput = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
         outputTextPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         outputTextArea = new javax.swing.JTextArea();
+        counterPanel = new javax.swing.JPanel();
+        shotsTakenCounterLabelText = new javax.swing.JLabel();
+        shipsRemainingCounterLabelText = new javax.swing.JLabel();
+        remainingShipsCounter = new javax.swing.JTextField();
+        shotsTakenCounter = new javax.swing.JTextField();
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -75,6 +81,8 @@ public class GuiOutput extends javax.swing.JFrame implements Output {
         gridOutput.setRows(5);
         jScrollPane2.setViewportView(gridOutput);
 
+        jLabel1.setText("Battleshite");
+
         add(gridLocA1);
         add(gridLocA2);
         add(gridLocB1);
@@ -88,14 +96,20 @@ public class GuiOutput extends javax.swing.JFrame implements Output {
             battleShipsGridAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(battleShipsGridAreaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
+                .addGroup(battleShipsGridAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(battleShipsGridAreaLayout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 3, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         battleShipsGridAreaLayout.setVerticalGroup(
             battleShipsGridAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, battleShipsGridAreaLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -121,6 +135,44 @@ public class GuiOutput extends javax.swing.JFrame implements Output {
                 .addContainerGap())
         );
 
+        shotsTakenCounterLabelText.setText("Shots Taken");
+
+        shipsRemainingCounterLabelText.setText("Ships Remaining");
+
+        remainingShipsCounter.setToolTipText("");
+        remainingShipsCounter.setActionCommand("<Not Set>");
+
+        shotsTakenCounter.setEditable(false);
+
+        javax.swing.GroupLayout counterPanelLayout = new javax.swing.GroupLayout(counterPanel);
+        counterPanel.setLayout(counterPanelLayout);
+        counterPanelLayout.setHorizontalGroup(
+            counterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, counterPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(counterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(shotsTakenCounter)
+                    .addComponent(shipsRemainingCounterLabelText, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(remainingShipsCounter, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, counterPanelLayout.createSequentialGroup()
+                        .addComponent(shotsTakenCounterLabelText)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        counterPanelLayout.setVerticalGroup(
+            counterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(counterPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(shipsRemainingCounterLabelText)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(remainingShipsCounter, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(shotsTakenCounterLabelText)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(shotsTakenCounter, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -128,15 +180,20 @@ public class GuiOutput extends javax.swing.JFrame implements Output {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(battleShipsGridArea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(outputTextPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(outputTextPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(battleShipsGridArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(counterPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(7, Short.MAX_VALUE)
-                .addComponent(battleShipsGridArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(battleShipsGridArea, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(counterPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(outputTextPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -146,13 +203,19 @@ public class GuiOutput extends javax.swing.JFrame implements Output {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel battleShipsGridArea;
+    private javax.swing.JPanel counterPanel;
     private javax.swing.JTextArea gridOutput;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea outputTextArea;
     private javax.swing.JPanel outputTextPanel;
+    private javax.swing.JTextField remainingShipsCounter;
+    private javax.swing.JLabel shipsRemainingCounterLabelText;
+    private javax.swing.JTextField shotsTakenCounter;
+    private javax.swing.JLabel shotsTakenCounterLabelText;
     // End of variables declaration//GEN-END:variables
 
     //Start of Josh custom methods
@@ -161,13 +224,15 @@ public class GuiOutput extends javax.swing.JFrame implements Output {
         gridOutput.setText(ConsoleGridGenerator.generateSmallGrid(gameBoard));
         gridOutput.append("\n\n");
         gridOutput.append(ConsoleGridGenerator.generateLargeGrid(gameBoard));
+        
+        remainingShipsCounter.setText(String.valueOf(gameBoard.getNumberOfRemainingShips()));
+        shotsTakenCounter.setText(String.valueOf(gameBoard.getTotalShotsTaken()));
     }
 
     @Override
     public void printGameText(String text) {
         outputTextArea.append(text + "\n");
         outputTextArea.setCaretPosition(outputTextArea.getDocument().getLength());
-        //outputTextArea.setText("JoshTest");
     }
     //End of Josh custom methods
 }

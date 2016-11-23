@@ -8,6 +8,7 @@ package com.windels.battleships.io.impl;
 import com.windels.battleships.io.Input;
 import java.util.LinkedList;
 import java.util.Queue;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -198,6 +199,4 @@ public class GuiInput extends javax.swing.JFrame implements Input {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     //End of Josh custom methods
-
-
 }

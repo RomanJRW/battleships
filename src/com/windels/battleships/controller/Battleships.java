@@ -26,16 +26,23 @@ public class Battleships {
 		output.printGameText(GameText.INTRO.getText());
 		goToMainMenu();
 		while (gameState != GameState.EXIT)	{
-			obtainInputAndPerformAction();			
+			obtainInputAndPerformAction();	
+                        
+                        //NEED HELP WITH ALL THIS, DON'T ACTUALLY KNOW ABOUT THREADING
+                        try {
+                            Thread.sleep(10);
+                        }
+                        catch (InterruptedException ex) {
+                            break;
+                        }
 		}
+                
 		closeGameAndExit();
 	}
 	
 	private void obtainInputAndPerformAction()	{
 		Command command = input.getUserInput();
-                System.out.println(command);
                 if (command != null)    {
-                    System.out.println(command.getType());
                     switch (command.getType()) {
 			case MAINMENU:	goToMainMenu(); 
 					break;

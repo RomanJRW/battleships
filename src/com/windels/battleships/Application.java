@@ -33,10 +33,10 @@ public class Application {
 			System.exit(1);
 		}
 		else	{
-			//in = new ConsoleInput();
-                        //out = new ConsoleOutput();
-                        in = new GuiInput(); //FOR TESTING GUI
-			out = new GuiOutput(); //FOR TESTING GUI
+			in = new ConsoleInput();
+                        out = new ConsoleOutput();
+                        //in = new GuiInput(); //FOR TESTING GUI
+			//out = new GuiOutput(); //FOR TESTING GUI
 		}
 		Battleships bs = new Battleships(in, out);
 		bs.run();
