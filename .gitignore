@@ -12,6 +12,8 @@ dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
 
+## Custom added for Maven/Netbeans
+nbactions.xml
 
 ### Eclipse ###
 
