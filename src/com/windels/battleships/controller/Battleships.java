@@ -26,38 +26,48 @@ public class Battleships {
 		output.printGameText(GameText.INTRO.getText());
 		goToMainMenu();
 		while (gameState != GameState.EXIT)	{
-			obtainInputAndPerformAction();			
+			obtainInputAndPerformAction();	
+                        
+                        //NEED HELP WITH ALL THIS, DON'T ACTUALLY KNOW ABOUT THREADING
+                        try {
+                            Thread.sleep(10);
+                        }
+                        catch (InterruptedException ex) {
+                            break;
+                        }
 		}
+                
 		closeGameAndExit();
 	}
 	
 	private void obtainInputAndPerformAction()	{
-		Command command = input.getInput();
-		try {
-			switch (command.getType()) {
-				case MAINMENU:	goToMainMenu(); 
-						break;
-				case NEWGAME:	startNewGame();
-						break;
-				case LISTGAMES:	listSavedGames();
-						break;
-				case EXITGAME:	exitGame();
-						break;
-				case HELPMENU:	helpMenu();
-						break;
-				case LOADGAME:	String loadFileName = command.getFileName();
-						loadExistingGameFromFile(loadFileName);
-						break;
-				case SAVEGAME:	String saveFileName = command.getFileName();
-						saveExistingGameToFile(saveFileName);
-						break;
-				case SHOT:	String shotInput = command.getShotLocation();
-						makeMove(shotInput);
-						break;
+		Command command = input.getUserInput();
+                if (command != null)    {
+                    switch (command.getType()) {
+			case MAINMENU:	goToMainMenu(); 
+					break;
+			case NEWGAME:	startNewGame();
+					break;
+			case LISTGAMES:	listSavedGames();
+					break;
+			case EXITGAME:	exitGame();
+					break;
+			case HELPMENU:	helpMenu();
+					break;
+			case LOADGAME:	String loadFileName = command.getFileName();
+					loadExistingGameFromFile(loadFileName);
+					break;				
+                        case SAVEGAME:	String saveFileName = command.getFileName();
+					saveExistingGameToFile(saveFileName);
+					break;
+			case SHOT:	String shotInput = command.getShotLocation();
+					makeMove(shotInput);
+					break;
+                        default:        break;
 			}
-		} catch (NullPointerException e) {
-			informInvalidCommand();
-		}
+               }
+		
+		
 	}
 	
 	//NOT SURE IF I WANT THIS. IF I'M USING IT, IT MIGHT IMPLY COUPLING THAT I DON'T WANT
@@ -71,16 +81,12 @@ public class Battleships {
 		helpMenu();
 	}
 	
-	private void startNewGame()	{
-		if (gameState == GameState.MAIN_MENU)	{			
-			gameBoard = new GameBoard(boardHeight, boardWidth, new Ship[4]); //DEFAULT STANDARD GRID, CAN ADD VARIATIONS LATER
-			gameBoard.generateAndPlaceShipsOnGrid();
-			output.renderGameBoard(gameBoard);
-			gamePlayMode();
-		}
-		else	{
-			output.printGameText(GameText.UNAVAILABLEINPUT.getText()); //PROVIDE MORE SPECIFIC TEXT DEPENDING ON ERROR AT SOME POINT
-		}
+	private void startNewGame()	{		
+            gameBoard = new GameBoard(boardHeight, boardWidth, new Ship[4]); //DEFAULT STANDARD GRID, CAN ADD VARIATIONS LATER
+            gameBoard.generateAndPlaceShipsOnGrid();
+            output.printGameText(GameText.NEWGAME.getText());
+            output.renderGameBoard(gameBoard);
+            gamePlayMode();
 	}
 
 	private void listSavedGames()	{
@@ -156,19 +162,9 @@ public class Battleships {
 	private void helpMenu()	{
 		output.printGameText(input.getHelpText());
 	}
-	
-	
-	private void informInvalidCommand() {
-		output.printGameText(GameText.INVALIDCOMMAND.getText());
-	}
 
 	private void exitGame()	{
-		if (gameState == GameState.MAIN_MENU)	{
-			gameState = GameState.EXIT;
-		}
-		else	{
-			output.printGameText(GameText.UNAVAILABLEINPUT.getText()); //PROVIDE MORE SPECIFIC TEXT DEPENDING ON ERROR AT SOME POINT
-		}
+            gameState = GameState.EXIT;
 	}
 
 	private void closeGameAndExit() {

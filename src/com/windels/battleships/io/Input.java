@@ -5,7 +5,7 @@ import com.windels.battleships.io.impl.Command;
 public interface Input {
 	
 	void close();
-	Command getInput();
+	Command getUserInput();
 	String getHelpText();
 
 }

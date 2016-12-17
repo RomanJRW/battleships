@@ -46,7 +46,7 @@ public class ConsoleGridGeneratorTest {
 				+ "13\t|\t-\t-\t-\t-\t-\t-\t-\t-\n\n\n"
 				+ "14\t|\t-\t-\t-\t-\t-\t-\t-\t-\n\n\n";
 		
-		assertTrue(testGridGen.generateGrid(mockedGameBoard).equals(expectedGrid));
+		assertTrue(testGridGen.generateLargeGrid(mockedGameBoard).equals(expectedGrid));
 	}
 	
 	@Test
@@ -70,7 +70,7 @@ public class ConsoleGridGeneratorTest {
 				+ "10\t|\t-\t-\t-\t-\t-\t-\t-\t-\t-\t-\n\n\n";
 		
 		
-		assertTrue(testGridGen.generateGrid(mockedGameBoard).equals(expectedGrid));
+		assertTrue(testGridGen.generateLargeGrid(mockedGameBoard).equals(expectedGrid));
 	}
 	
 	@Test
@@ -91,7 +91,7 @@ public class ConsoleGridGeneratorTest {
 				+ "7\t|\t-\t-\t-\t-\t-\t-\t-\t-\t-\t-\t-\t-\t-\t-\n\n\n"
 				+ "8\t|\t-\t-\t-\t-\t-\t-\t-\t-\t-\t-\t-\t-\t-\t-\n\n\n";
 
-		assertTrue(testGridGen.generateGrid(mockedGameBoard).equals(expectedGrid));
+		assertTrue(testGridGen.generateLargeGrid(mockedGameBoard).equals(expectedGrid));
 	}
 	
 	@Test
@@ -118,7 +118,7 @@ public class ConsoleGridGeneratorTest {
 				+ "13\t|\t-\t-\t-\t-\t-\t-\t-\t-\n\n\n"
 				+ "14\t|\t-\t-\t-\t-\t-\t-\t-\t-\n\n\n";
 		
-		assertTrue(testGridGen.generateGrid(mockedGameBoard).equals(expectedGrid));
+		assertTrue(testGridGen.generateLargeGrid(mockedGameBoard).equals(expectedGrid));
 	}
 	
 	@Test
@@ -142,7 +142,7 @@ public class ConsoleGridGeneratorTest {
 				+ "10\t|\t-\t-\t-\t-\t-\t-\t-\t-\t-\t-\n\n\n";
 		
 		
-		assertTrue(testGridGen.generateGrid(mockedGameBoard).equals(expectedGrid));
+		assertTrue(testGridGen.generateLargeGrid(mockedGameBoard).equals(expectedGrid));
 	}
 	
 	@Test
@@ -163,7 +163,7 @@ public class ConsoleGridGeneratorTest {
 				+ "7\t|\t-\t-\t-\t-\t-\t-\t-\t-\t-\t-\t-\t-\t-\t-\n\n\n"
 				+ "8\t|\t-\t-\t-\t-\t-\t-\t-\t-\t-\t-\t-\t-\t-\t-\n\n\n";
 
-		assertTrue(testGridGen.generateGrid(mockedGameBoard).equals(expectedGrid));
+		assertTrue(testGridGen.generateLargeGrid(mockedGameBoard).equals(expectedGrid));
 	}
 	
 	@Test
@@ -190,7 +190,7 @@ public class ConsoleGridGeneratorTest {
 				+ "13\t|\tX\tX\tX\tX\tX\tX\tX\tX\n\n\n"
 				+ "14\t|\tX\tX\tX\tX\tX\tX\tX\tX\n\n\n";
 		
-		assertTrue(testGridGen.generateGrid(mockedGameBoard).equals(expectedGrid));
+		assertTrue(testGridGen.generateLargeGrid(mockedGameBoard).equals(expectedGrid));
 	}
 	
 	@Test
@@ -214,7 +214,7 @@ public class ConsoleGridGeneratorTest {
 				+ "10\t|\tX\tX\tX\tX\tX\tX\tX\tX\tX\tX\n\n\n";
 		
 		
-		assertTrue(testGridGen.generateGrid(mockedGameBoard).equals(expectedGrid));
+		assertTrue(testGridGen.generateLargeGrid(mockedGameBoard).equals(expectedGrid));
 	}
 	
 	@Test
@@ -235,6 +235,6 @@ public class ConsoleGridGeneratorTest {
 				+ "7\t|\tX\tX\tX\tX\tX\tX\tX\tX\tX\tX\tX\tX\tX\tX\n\n\n"
 				+ "8\t|\tX\tX\tX\tX\tX\tX\tX\tX\tX\tX\tX\tX\tX\tX\n\n\n";
 
-		assertTrue(testGridGen.generateGrid(mockedGameBoard).equals(expectedGrid));
+		assertTrue(testGridGen.generateLargeGrid(mockedGameBoard).equals(expectedGrid));
 	}
 }

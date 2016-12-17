@@ -42,7 +42,9 @@ public enum GameText {
 		.append("           *                  Congratulations, Captain!                   *" + "\n")
 		.append("           *     You have located and destroyed all of the enemy ships    *" + "\n")
 		.append("           ****************************************************************" + "\n")
-		.toString());
+		.toString()),
+        
+        NEWGAME("New game started");
 
 	private final String text;
 	
