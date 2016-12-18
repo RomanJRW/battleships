@@ -11,13 +11,6 @@ public enum GameText {
 		.append("           *        Try to use as few shots as you can. Good Luck!        *" + "\n")
 		.append("           ****************************************************************" + "\n")
 		.toString()),
-			
-	MAINMENU(new StringBuilder("")
-		.append("\n")
-		.append("           ****************************************************************" + "\n")
-		.append("           *                   You are at the main menu.                  *" + "\n")
-		.append("           ****************************************************************" + "\n")
-		.toString()),
 	
 	SAVEERROR("There was a problem when saving the game. Game not saved"),
 	
@@ -25,7 +18,7 @@ public enum GameText {
 	
 	INVALIDSHOT("That wasn't a valid shot, you fool!"),
 	
-	SHOTPROMPT("Where would you like to shoot next captain? (ie. A1, D4)"),
+	SHOTPROMPT("Where would you like to shoot captain?"),
 	
 	SAVESUCCESS("Game saved successfully"),
 	
