@@ -8,8 +8,6 @@ package com.windels.battleships.io.impl;
 import com.windels.battleships.controller.GameBoard;
 import com.windels.battleships.io.Input;
 import com.windels.battleships.io.Output;
-import java.util.LinkedList;
-import java.util.Queue;
 import javax.swing.JOptionPane;
 
 
@@ -36,8 +34,6 @@ public class BattleshipsGui extends javax.swing.JFrame implements Input, Output 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        outputTextArea = new javax.swing.JTextArea();
         battleShipsGrid = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         gridOutput = new javax.swing.JTextArea();
@@ -59,11 +55,6 @@ public class BattleshipsGui extends javax.swing.JFrame implements Input, Output 
         shootButton = new javax.swing.JButton();
         shotTextField = new javax.swing.JTextField();
 
-        outputTextArea.setEditable(false);
-        outputTextArea.setColumns(20);
-        outputTextArea.setRows(5);
-        jScrollPane1.setViewportView(outputTextArea);
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         battleShipsGrid.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -76,17 +67,11 @@ public class BattleshipsGui extends javax.swing.JFrame implements Input, Output 
         battleShipsGrid.setLayout(battleShipsGridLayout);
         battleShipsGridLayout.setHorizontalGroup(
             battleShipsGridLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(battleShipsGridLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         battleShipsGridLayout.setVerticalGroup(
             battleShipsGridLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(battleShipsGridLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
         );
 
         newGameButton.setText("New Game");
@@ -141,7 +126,9 @@ public class BattleshipsGui extends javax.swing.JFrame implements Input, Output 
 
         jLabel1.setText("Battleshite");
 
+        displayGameTextArea.setEditable(false);
         displayGameTextArea.setColumns(20);
+        displayGameTextArea.setLineWrap(true);
         displayGameTextArea.setRows(5);
         jScrollPane3.setViewportView(displayGameTextArea);
 
@@ -149,21 +136,15 @@ public class BattleshipsGui extends javax.swing.JFrame implements Input, Output 
         outputTextPanel.setLayout(outputTextPanelLayout);
         outputTextPanelLayout.setHorizontalGroup(
             outputTextPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 433, Short.MAX_VALUE)
             .addGroup(outputTextPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(outputTextPanelLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
-                    .addContainerGap()))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE))
         );
         outputTextPanelLayout.setVerticalGroup(
             outputTextPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 113, Short.MAX_VALUE)
             .addGroup(outputTextPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(outputTextPanelLayout.createSequentialGroup()
-                    .addGap(14, 14, 14)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(15, Short.MAX_VALUE)))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE))
         );
 
         shotsTakenCounterLabelText.setText("Shots Taken");
@@ -225,8 +206,8 @@ public class BattleshipsGui extends javax.swing.JFrame implements Input, Output 
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(outputTextPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(battleShipsGrid, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(battleShipsGrid, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(outputTextPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -296,12 +277,10 @@ public class BattleshipsGui extends javax.swing.JFrame implements Input, Output 
     private javax.swing.JTextArea gridOutput;
     private javax.swing.JButton helpButton;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JButton loadGameButton;
     private javax.swing.JButton newGameButton;
-    private javax.swing.JTextArea outputTextArea;
     private javax.swing.JPanel outputTextPanel;
     private javax.swing.JTextField remainingShipsCounter;
     private javax.swing.JButton saveGameButton;
@@ -313,7 +292,6 @@ public class BattleshipsGui extends javax.swing.JFrame implements Input, Output 
     // End of variables declaration//GEN-END:variables
 
     //Start of Josh custom variable declaration
-    private Queue<Command> userInputs = new LinkedList<Command>();
     private Command userComm = null;
     //End of custom variable declaration
     
@@ -357,19 +335,20 @@ public class BattleshipsGui extends javax.swing.JFrame implements Input, Output 
     }
 
     @Override
-    public void displayGameText(String text) {
-        displayGameTextArea.append(text + "\n");
-        displayGameTextArea.setCaretPosition(outputTextArea.getDocument().getLength());
+    public void displayInGameText(String text) {
+        displayGameTextArea.append(text + "\n\n");
+        displayGameTextArea.setCaretPosition(displayGameTextArea.getDocument().getLength());
     }
 
     @Override
-    public void displayIntro(String introText) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void displayGameControl(String gameControlText) {
+        JOptionPane.showMessageDialog(this, gameControlText,
+                "Battleshite", JOptionPane.PLAIN_MESSAGE);
     }
 
     @Override
     public void displayHelpMenu(String helpText) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     //End of Josh custom methods
