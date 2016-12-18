@@ -21,6 +21,12 @@ public class Command {
 		this(ConsoleCommandManager.SHOT);
 		shotLocation = aShotLocation;
 	}
+        
+        Command(Command existingCommand) {
+            type = existingCommand.getType();
+            fileName = existingCommand.getFileName();
+            shotLocation = existingCommand.getShotLocation();
+        }
 	
 	public ConsoleCommandManager getType()	{
 		return type;

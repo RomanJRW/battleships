@@ -151,17 +151,20 @@ public class GuiInput extends javax.swing.JFrame implements Input {
     }// </editor-fold>//GEN-END:initComponents
 
     private void newGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGameButtonActionPerformed
-        userInputs.add(new Command(ConsoleCommandManager.NEWGAME));
+        userComm = new Command(ConsoleCommandManager.NEWGAME);
+        notifyCommand();
     }//GEN-LAST:event_newGameButtonActionPerformed
 
     private void shootButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shootButtonActionPerformed
         String shotLocation = shotTextField.getText();
-        userInputs.add(new Command(shotLocation));
+        userComm = new Command(shotLocation);
         shotTextField.setText("");
+        notifyCommand();
     }//GEN-LAST:event_shootButtonActionPerformed
 
     private void exitGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitGameButtonActionPerformed
-        userInputs.add(new Command(ConsoleCommandManager.EXITGAME));
+        userComm = new Command(ConsoleCommandManager.EXITGAME);
+        notifyCommand();
     }//GEN-LAST:event_exitGameButtonActionPerformed
 
     
@@ -180,13 +183,27 @@ public class GuiInput extends javax.swing.JFrame implements Input {
 
     //Start of Josh custom variable declaration
     private Queue<Command> userInputs = new LinkedList<Command>();
+    private Command userComm = null;
     //End of custom variable declaration
     
     //Start of Josh custom methods
     @Override
-    public Command getUserInput()   {
-        return userInputs.poll();
+    public synchronized Command getUserInput()   {
+        while (userComm == null) {
+            try {
+                wait();
+            } catch (InterruptedException e) {
+            }
+        }
+        Command givenComm = new Command(userComm);
+        userComm = null;
+        return givenComm;
     }
+    
+    public synchronized void notifyCommand() {
+        notifyAll();
+    }
+    
     
     @Override
     public void close() {

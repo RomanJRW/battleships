@@ -12,8 +12,8 @@ public class Battleships {
 	private GameState gameState;
 	private FileManager fm;
 	
-	private final int boardHeight = 10;
-	private final int boardWidth = 10;
+	private final int BOARD_HEIGHT = 10;
+	private final int BOARD_WIDTH = 10;
 	
 	public Battleships(Input anInput, Output anOutput)	{
 		this.input = anInput;
@@ -26,24 +26,12 @@ public class Battleships {
 		output.printGameText(GameText.INTRO.getText());
 		goToMainMenu();
 		while (gameState != GameState.EXIT)	{
-                    Command userCommand = obtainUserInput();
+                    Command userCommand = input.getUserInput();
                     performInputAction(userCommand);	
-                        
-                    //NEED HELP WITH ALL THIS, DON'T ACTUALLY KNOW ABOUT THREADING
-                    try {   
-                        Thread.sleep(10);
-                    }
-                    catch (InterruptedException ex) {
-                        break;
-                    }
 		}
                 
 		closeGameAndExit();
 	}
-	
-        private Command obtainUserInput() {
-            return input.getUserInput();
-        }
         
 	private void performInputAction(Command command)	{
                 if (command != null)    {
@@ -86,7 +74,7 @@ public class Battleships {
 	}
 	
 	private void startNewGame()	{		
-            gameBoard = new GameBoard(boardHeight, boardWidth, new Ship[4]); //DEFAULT STANDARD GRID, CAN ADD VARIATIONS LATER
+            gameBoard = new GameBoard(BOARD_HEIGHT, BOARD_WIDTH, new Ship[4]); //DEFAULT STANDARD GRID, CAN ADD VARIATIONS LATER
             gameBoard.generateAndPlaceShipsOnGrid();
             output.printGameText(GameText.NEWGAME.getText());
             output.renderGameBoard(gameBoard);
@@ -188,7 +176,7 @@ public class Battleships {
 		int rowNum;
 		try	{
 			rowNum = Integer.parseInt(row);
-			if (rowNum >= 1 && rowNum <= boardHeight)	{
+			if (rowNum >= 1 && rowNum <= BOARD_HEIGHT)	{
 				return true;
 			}
 			else	{
@@ -201,7 +189,7 @@ public class Battleships {
 	}
 
 	private boolean columnExistOnGrid(char column) {
-		if (column >= 65 && column < 65 + boardWidth)	{
+		if (column >= 65 && column < 65 + BOARD_WIDTH)	{
 			return true;
 		}
 		return false;
