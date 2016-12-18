@@ -357,9 +357,20 @@ public class BattleshipsGui extends javax.swing.JFrame implements Input, Output 
     }
 
     @Override
-    public void printGameText(String text) {
+    public void displayGameText(String text) {
         displayGameTextArea.append(text + "\n");
         displayGameTextArea.setCaretPosition(outputTextArea.getDocument().getLength());
     }
+
+    @Override
+    public void displayIntro(String introText) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void displayHelpMenu(String helpText) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     //End of Josh custom methods
 }
