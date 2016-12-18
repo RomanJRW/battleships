@@ -6,9 +6,9 @@ public interface Output {
 
 	void renderGameBoard(GameBoard gameBoard);
 
-	void displayGameText(String text);
+	void displayInGameText(String text);
 	
-        void displayIntro(String introText);
+        void displayGameControl(String introText);
         
         void displayHelpMenu(String helpText);
 }

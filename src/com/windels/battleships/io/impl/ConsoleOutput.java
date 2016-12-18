@@ -12,13 +12,15 @@ public class ConsoleOutput implements Output {
     }
 
     @Override
-    public void displayGameText(String text) {
+    public void displayInGameText(String text) {
         System.out.println(text);
     }
 
     @Override
-    public void displayIntro(String introText) {
-        System.out.println(introText);
+    public void displayGameControl(String gameControlText) {
+        System.out.println("****************************************************************" + "\n"
+        + gameControlText
+        + "****************************************************************" + "\n");
     }
 
     @Override

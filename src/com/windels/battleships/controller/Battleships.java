@@ -23,8 +23,8 @@ public class Battleships {
     }
 
     public void run() {
-        output.displayIntro(GameText.INTRO.getText());
-        //WANT TO ADD AN ALTERNATIVE TO MAINMENU HERE
+        output.displayGameControl(GameText.INTRO.getText());
+        helpMenu();
         while (gameState != GameState.EXIT) {
             Command userCommand = input.getUserInput();
             performInputAction(userCommand);
@@ -74,25 +74,25 @@ public class Battleships {
     private void startNewGame() {
         gameBoard = new GameBoard(BOARD_HEIGHT, BOARD_WIDTH, new Ship[4]); //DEFAULT STANDARD GRID, CAN ADD VARIATIONS LATER
         gameBoard.generateAndPlaceShipsOnGrid();
-        output.displayGameText(GameText.NEWGAME.getText());
+        output.displayInGameText(GameText.NEWGAME.getText());
         output.renderGameBoard(gameBoard);
         gamePlayMode();
     }
 
     private void listSavedGames() {
         for (int i = 0; i < fm.getFilesNamesList().size(); i++) {
-            output.displayGameText(fm.getFilesNamesList().get(i));
+            output.displayInGameText(fm.getFilesNamesList().get(i));
         }
     }
 
     private void loadExistingGameFromFile(String fileName) {
         try {
             gameBoard = fm.loadGame(fileName);
-            output.displayGameText(GameText.LOADSUCCESS.getText());
+            output.displayInGameText(GameText.LOADSUCCESS.getText());
             output.renderGameBoard(gameBoard);
             gamePlayMode();
         } catch (Exception ex) {
-            output.displayGameText(GameText.LOADERROR.getText());
+            output.displayInGameText(GameText.LOADERROR.getText());
         }
     }
 
@@ -100,14 +100,14 @@ public class Battleships {
         if (gameState == GameState.IN_PLAY) {
             try {
                 fm.saveGame(fileName, gameBoard);
-                output.displayGameText(GameText.SAVESUCCESS.getText());
+                output.displayInGameText(GameText.SAVESUCCESS.getText());
                 gamePlayMode();
             } catch (Exception ex) {
                 ex.printStackTrace();
-                output.displayGameText(GameText.SAVEERROR.getText());
+                output.displayInGameText(GameText.SAVEERROR.getText());
             }
         } else {
-            output.displayGameText(GameText.UNAVAILABLEINPUT.getText()); //PROVIDE MORE SPECIFIC TEXT DEPENDING ON ERROR AT SOME POINT
+            output.displayInGameText(GameText.UNAVAILABLEINPUT.getText()); //PROVIDE MORE SPECIFIC TEXT DEPENDING ON ERROR AT SOME POINT
         }
     }
 
@@ -115,9 +115,9 @@ public class Battleships {
         if (gameState == GameState.IN_PLAY && isCorrectShotFormat(shotInput)) {
             if (isShotValidGridLocation(shotInput)) {
                 ShotResult shotResult = gameBoard.takeShotAndGetResult(shotInput);
-                output.displayGameText(shotResult.getMessage());
-                output.displayGameText(GameText.SHIPSREMAINING.getText() + gameBoard.getNumberOfRemainingShips());
                 output.renderGameBoard(gameBoard);
+                output.displayInGameText(shotResult.getMessage());
+                output.displayInGameText(GameText.SHIPSREMAINING.getText() + gameBoard.getNumberOfRemainingShips());
                 if (gameBoard.areAllShipsSunk()) {
                     gameState = GameState.GAME_ENDED;
                     output.renderGameBoard(gameBoard);
@@ -125,10 +125,10 @@ public class Battleships {
                     gamePlayMode();
                 }
             } else {
-                output.displayGameText(GameText.INVALIDSHOT.getText());
+                output.displayInGameText(GameText.INVALIDSHOT.getText());
             }
         } else {
-            output.displayGameText(GameText.UNAVAILABLEINPUT.getText()); //PROVIDE MORE SPECIFIC TEXT DEPENDING ON ERROR AT SOME POINT
+            output.displayInGameText(GameText.UNAVAILABLEINPUT.getText()); //PROVIDE MORE SPECIFIC TEXT DEPENDING ON ERROR AT SOME POINT
         }
     }
 
@@ -175,7 +175,7 @@ public class Battleships {
 
     private void gamePlayMode() {
         gameState = GameState.IN_PLAY;
-        output.displayGameText(GameText.SHOTPROMPT.getText());
+        output.displayInGameText(GameText.SHOTPROMPT.getText());
     }
 
     private boolean isCorrectShotFormat(String input) {
