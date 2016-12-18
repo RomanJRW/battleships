@@ -222,8 +222,8 @@ public class GuiOutput extends javax.swing.JFrame implements Output {
     @Override
     public void renderGameBoard(GameBoard gameBoard) {
         gridOutput.setText(ConsoleGridGenerator.generateSmallGrid(gameBoard));
-        gridOutput.append("\n\n");
-        gridOutput.append(ConsoleGridGenerator.generateLargeGrid(gameBoard));
+        //gridOutput.append("\n\n"); FOR TESTING
+        //gridOutput.append(ConsoleGridGenerator.generateLargeGrid(gameBoard)); FOR TESTING
         
         remainingShipsCounter.setText(String.valueOf(gameBoard.getNumberOfRemainingShips()));
         shotsTakenCounter.setText(String.valueOf(gameBoard.getTotalShotsTaken()));

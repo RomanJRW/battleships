@@ -8,6 +8,10 @@ package com.windels.battleships.io.impl;
 import com.windels.battleships.controller.GameBoard;
 import com.windels.battleships.io.Input;
 import com.windels.battleships.io.Output;
+import java.util.LinkedList;
+import java.util.Queue;
+import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -16,10 +20,11 @@ import com.windels.battleships.io.Output;
 public class BattleshipsGui extends javax.swing.JFrame implements Input, Output {
 
     /**
-     * Creates new form BattleshipsGui
+     * Creates new form GuiInterface
      */
     public BattleshipsGui() {
         initComponents();
+        setVisible(true);
     }
 
     /**
@@ -31,82 +36,329 @@ public class BattleshipsGui extends javax.swing.JFrame implements Input, Output 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        outputTextArea = new javax.swing.JTextArea();
+        battleShipsGrid = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        gridOutput = new javax.swing.JTextArea();
+        buttonPanel = new javax.swing.JPanel();
+        newGameButton = new javax.swing.JButton();
+        saveGameButton = new javax.swing.JButton();
+        helpButton = new javax.swing.JButton();
+        exitGameButton = new javax.swing.JButton();
+        loadGameButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        outputTextPanel = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        outputTextArea1 = new javax.swing.JTextArea();
+        counterPanel = new javax.swing.JPanel();
+        shotsTakenCounterLabelText = new javax.swing.JLabel();
+        shipsRemainingCounterLabelText = new javax.swing.JLabel();
+        remainingShipsCounter = new javax.swing.JTextField();
+        shotsTakenCounter = new javax.swing.JTextField();
+        shootButton = new javax.swing.JButton();
+        shotTextField = new javax.swing.JTextField();
+
+        outputTextArea.setEditable(false);
+        outputTextArea.setColumns(20);
+        outputTextArea.setRows(5);
+        jScrollPane1.setViewportView(outputTextArea);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        battleShipsGrid.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        gridOutput.setColumns(20);
+        gridOutput.setRows(5);
+        jScrollPane2.setViewportView(gridOutput);
+
+        javax.swing.GroupLayout battleShipsGridLayout = new javax.swing.GroupLayout(battleShipsGrid);
+        battleShipsGrid.setLayout(battleShipsGridLayout);
+        battleShipsGridLayout.setHorizontalGroup(
+            battleShipsGridLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(battleShipsGridLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2)
+                .addContainerGap())
+        );
+        battleShipsGridLayout.setVerticalGroup(
+            battleShipsGridLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(battleShipsGridLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        newGameButton.setText("New Game");
+        newGameButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newGameButtonActionPerformed(evt);
+            }
+        });
+
+        saveGameButton.setText("Save Game");
+
+        helpButton.setText("Help");
+
+        exitGameButton.setText("Exit Game");
+        exitGameButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitGameButtonActionPerformed(evt);
+            }
+        });
+
+        loadGameButton.setText("Load Game");
+
+        javax.swing.GroupLayout buttonPanelLayout = new javax.swing.GroupLayout(buttonPanel);
+        buttonPanel.setLayout(buttonPanelLayout);
+        buttonPanelLayout.setHorizontalGroup(
+            buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(buttonPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(exitGameButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(helpButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(newGameButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(saveGameButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(loadGameButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        buttonPanelLayout.setVerticalGroup(
+            buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(buttonPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(newGameButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(loadGameButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(saveGameButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(helpButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(exitGameButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jLabel1.setText("Battleshite");
+
+        outputTextArea1.setEditable(false);
+        outputTextArea1.setColumns(20);
+        outputTextArea1.setRows(5);
+        jScrollPane3.setViewportView(outputTextArea1);
+
+        javax.swing.GroupLayout outputTextPanelLayout = new javax.swing.GroupLayout(outputTextPanel);
+        outputTextPanel.setLayout(outputTextPanelLayout);
+        outputTextPanelLayout.setHorizontalGroup(
+            outputTextPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(outputTextPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        outputTextPanelLayout.setVerticalGroup(
+            outputTextPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        shotsTakenCounterLabelText.setText("Shots Taken");
+
+        shipsRemainingCounterLabelText.setText("Ships Remaining");
+
+        remainingShipsCounter.setToolTipText("");
+        remainingShipsCounter.setActionCommand("<Not Set>");
+
+        shotsTakenCounter.setEditable(false);
+
+        javax.swing.GroupLayout counterPanelLayout = new javax.swing.GroupLayout(counterPanel);
+        counterPanel.setLayout(counterPanelLayout);
+        counterPanelLayout.setHorizontalGroup(
+            counterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, counterPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(counterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(counterPanelLayout.createSequentialGroup()
+                        .addComponent(shipsRemainingCounterLabelText)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                        .addComponent(shotsTakenCounterLabelText)
+                        .addGap(14, 14, 14))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, counterPanelLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(remainingShipsCounter, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(shotsTakenCounter, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
+        );
+        counterPanelLayout.setVerticalGroup(
+            counterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(counterPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(counterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(counterPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(shipsRemainingCounterLabelText, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(shotsTakenCounterLabelText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(counterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(remainingShipsCounter, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(shotsTakenCounter, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        shootButton.setText("Go");
+        shootButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                shootButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(battleShipsGrid, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(outputTextPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(shotTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(shootButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE))
+                            .addComponent(buttonPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(429, Short.MAX_VALUE)
+                    .addComponent(counterPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(battleShipsGrid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(outputTextPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(shootButton)
+                            .addComponent(shotTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(53, 53, 53)
+                        .addComponent(buttonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(46, 46, 46))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(counterPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(336, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+    private void newGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGameButtonActionPerformed
+        userComm = new Command(ConsoleCommandManager.NEWGAME);
+        notifyCommand();
+    }//GEN-LAST:event_newGameButtonActionPerformed
+
+    private void shootButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shootButtonActionPerformed
+        String shotLocation = shotTextField.getText();
+        userComm = new Command(shotLocation);
+        shotTextField.setText("");
+        notifyCommand();
+    }//GEN-LAST:event_shootButtonActionPerformed
+
+    private void exitGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitGameButtonActionPerformed
+        userComm = new Command(ConsoleCommandManager.EXITGAME);
+        notifyCommand();
+    }//GEN-LAST:event_exitGameButtonActionPerformed
+
+    
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel battleShipsGrid;
+    private javax.swing.JPanel buttonPanel;
+    private javax.swing.JPanel counterPanel;
+    private javax.swing.JButton exitGameButton;
+    private javax.swing.JTextArea gridOutput;
+    private javax.swing.JButton helpButton;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JButton loadGameButton;
+    private javax.swing.JButton newGameButton;
+    private javax.swing.JTextArea outputTextArea;
+    private javax.swing.JTextArea outputTextArea1;
+    private javax.swing.JPanel outputTextPanel;
+    private javax.swing.JTextField remainingShipsCounter;
+    private javax.swing.JButton saveGameButton;
+    private javax.swing.JLabel shipsRemainingCounterLabelText;
+    private javax.swing.JButton shootButton;
+    private javax.swing.JTextField shotTextField;
+    private javax.swing.JTextField shotsTakenCounter;
+    private javax.swing.JLabel shotsTakenCounterLabelText;
+    // End of variables declaration//GEN-END:variables
+
+    //Start of Josh custom variable declaration
+    private Queue<Command> userInputs = new LinkedList<Command>();
+    private Command userComm = null;
+    //End of custom variable declaration
+    
+    //Start of Josh custom methods
+    @Override
+    public synchronized Command getUserInput()   {
+        while (userComm == null) {
+            try {
+                wait();
+            } catch (InterruptedException e) {
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BattleshipsGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BattleshipsGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BattleshipsGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BattleshipsGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new BattleshipsGui().setVisible(true);
-            }
-        });
+        Command givenComm = new Command(userComm);
+        userComm = null;
+        return givenComm;
     }
-
+    
+    public synchronized void notifyCommand() {
+        notifyAll();
+    }
+    
+    
     @Override
     public void close() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Command getUserInput() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public String getHelpText() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return null;
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void renderGameBoard(GameBoard gameBoard) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        gridOutput.setText(ConsoleGridGenerator.generateSmallGrid(gameBoard));
+        //gridOutput.append("\n\n"); FOR TESTING
+        //gridOutput.append(ConsoleGridGenerator.generateLargeGrid(gameBoard)); FOR TESTING
+        
+        remainingShipsCounter.setText(String.valueOf(gameBoard.getNumberOfRemainingShips()));
+        shotsTakenCounter.setText(String.valueOf(gameBoard.getTotalShotsTaken()));
     }
 
     @Override
     public void printGameText(String text) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        outputTextArea.append(text + "\n");
+        outputTextArea.setCaretPosition(outputTextArea.getDocument().getLength());
     }
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    // End of variables declaration//GEN-END:variables
+    //End of Josh custom methods
 }

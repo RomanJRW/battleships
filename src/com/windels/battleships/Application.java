@@ -8,11 +8,10 @@ package com.windels.battleships;
 import com.windels.battleships.controller.Battleships;
 import com.windels.battleships.io.impl.ConsoleInput;
 import com.windels.battleships.io.impl.ConsoleOutput;
-import com.windels.battleships.io.impl.GuiInput;
+import com.windels.battleships.io.impl.BattleshipsGui;
 //import com.windels.battleships.io.impl.guiOutput;
 import com.windels.battleships.io.Input;
 import com.windels.battleships.io.Output;
-import com.windels.battleships.io.impl.GuiOutput;
 
 /**
  *
@@ -25,8 +24,9 @@ public class Application {
                 Output out = null;
                 
 		if (args.length == 1 && args[0].equals("-gui"))	{
-			in = new GuiInput();
-			out = new GuiOutput();
+                        BattleshipsGui gui = new BattleshipsGui();
+			in = gui;
+			out = gui;
 		}
 		else if (args.length > 0)	{
 			System.out.println("Invalid arguments provided");
