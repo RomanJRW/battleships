@@ -8,6 +8,9 @@ package com.windels.battleships.io.impl;
 import com.windels.battleships.controller.GameBoard;
 import com.windels.battleships.io.Input;
 import com.windels.battleships.io.Output;
+import java.io.File;
+import java.util.List;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 
@@ -39,10 +42,9 @@ public class BattleshipsGui extends javax.swing.JFrame implements Input, Output 
         gridOutput = new javax.swing.JTextArea();
         buttonPanel = new javax.swing.JPanel();
         newGameButton = new javax.swing.JButton();
-        saveGameButton = new javax.swing.JButton();
         helpButton = new javax.swing.JButton();
         exitGameButton = new javax.swing.JButton();
-        loadGameButton = new javax.swing.JButton();
+        fileManagerButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         outputTextPanel = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -56,6 +58,7 @@ public class BattleshipsGui extends javax.swing.JFrame implements Input, Output 
         shotTextField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         battleShipsGrid.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -81,8 +84,6 @@ public class BattleshipsGui extends javax.swing.JFrame implements Input, Output 
             }
         });
 
-        saveGameButton.setText("Save Game");
-
         helpButton.setText("Help");
         helpButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,7 +98,12 @@ public class BattleshipsGui extends javax.swing.JFrame implements Input, Output 
             }
         });
 
-        loadGameButton.setText("Load Game");
+        fileManagerButton.setText("Save/Load Game");
+        fileManagerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fileManagerButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout buttonPanelLayout = new javax.swing.GroupLayout(buttonPanel);
         buttonPanel.setLayout(buttonPanelLayout);
@@ -109,8 +115,7 @@ public class BattleshipsGui extends javax.swing.JFrame implements Input, Output 
                     .addComponent(exitGameButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(helpButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(newGameButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(saveGameButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(loadGameButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(fileManagerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         buttonPanelLayout.setVerticalGroup(
@@ -119,9 +124,7 @@ public class BattleshipsGui extends javax.swing.JFrame implements Input, Output 
                 .addContainerGap()
                 .addComponent(newGameButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(loadGameButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(saveGameButton)
+                .addComponent(fileManagerButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(helpButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -176,8 +179,8 @@ public class BattleshipsGui extends javax.swing.JFrame implements Input, Output 
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, counterPanelLayout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(remainingShipsCounter, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(shotsTakenCounter, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)
+                        .addComponent(shotsTakenCounter)
                         .addContainerGap())))
         );
         counterPanelLayout.setVerticalGroup(
@@ -213,42 +216,37 @@ public class BattleshipsGui extends javax.swing.JFrame implements Input, Output 
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(battleShipsGrid, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(outputTextPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(shotTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(shootButton))
-                            .addComponent(buttonPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                        .addComponent(counterPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(shotTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(shootButton))
+                        .addComponent(buttonPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(counterPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(battleShipsGrid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(outputTextPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
                         .addComponent(counterPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(41, 41, 41)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(shootButton)
                             .addComponent(shotTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(53, 53, 53)
-                        .addComponent(buttonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(battleShipsGrid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(outputTextPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
 
         pack();
@@ -276,6 +274,23 @@ public class BattleshipsGui extends javax.swing.JFrame implements Input, Output 
         notifyCommand();
     }//GEN-LAST:event_helpButtonActionPerformed
 
+    private void fileManagerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileManagerButtonActionPerformed
+        
+        
+        /* ORIGINAL FILE LOAD CODE, MIGHT BE USEFUL
+        final JFileChooser loadMenu = new JFileChooser();
+        int returnVal = loadMenu.showOpenDialog(this);
+        loadMenu.setCurrentDirectory(new File(System.getProperty("user.dir")));
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            String fileName = loadMenu.getName();
+            userComm = new Command(ConsoleCommandManager.LOADGAME, fileName);
+            notifyCommand();
+        } else {
+           // log.append("Open command cancelled by user." + newline);
+        } 
+        */
+    }//GEN-LAST:event_fileManagerButtonActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -284,16 +299,15 @@ public class BattleshipsGui extends javax.swing.JFrame implements Input, Output 
     private javax.swing.JPanel counterPanel;
     private javax.swing.JTextArea displayGameTextArea;
     private javax.swing.JButton exitGameButton;
+    private javax.swing.JButton fileManagerButton;
     private javax.swing.JTextArea gridOutput;
     private javax.swing.JButton helpButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JButton loadGameButton;
     private javax.swing.JButton newGameButton;
     private javax.swing.JPanel outputTextPanel;
     private javax.swing.JTextField remainingShipsCounter;
-    private javax.swing.JButton saveGameButton;
     private javax.swing.JLabel shipsRemainingCounterLabelText;
     private javax.swing.JButton shootButton;
     private javax.swing.JTextField shotTextField;
@@ -330,8 +344,9 @@ public class BattleshipsGui extends javax.swing.JFrame implements Input, Output 
 
     @Override
     public String getHelpText() {
-        return "Use the menu options on the right hand side to get around."
-                + "To take a shot, simply click on the grid location!";
+        return "Use the menu options on the right hand side" + "\n"
+                + "to get around. To take a shot, simply click" + "\n"
+                + "on the grid location!";
     }
 
     @Override
@@ -360,4 +375,9 @@ public class BattleshipsGui extends javax.swing.JFrame implements Input, Output 
     }
     
     //End of Josh custom methods
+
+    @Override
+    public void displaySavedGames(List<String> savedGames) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

@@ -21,11 +21,11 @@ public class Application {
         Input in = null;
         Output out = null;
         if (args.length == 1 && args[0].equals("-gui")) {
-            //BattleshipsGui gui = new BattleshipsGui();
-            //in = gui;
-            //out = gui;
-            in = new ConsoleInput();
-            out = new ConsoleOutput();
+            BattleshipsGui gui = new BattleshipsGui();
+            in = gui;
+            out = gui;
+            //in = new ConsoleInput();
+            //out = new ConsoleOutput();
         } else if (args.length > 0) {
             System.out.println("Invalid arguments provided");
             System.exit(1);

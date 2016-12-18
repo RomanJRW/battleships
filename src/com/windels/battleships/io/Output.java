@@ -1,6 +1,7 @@
 package com.windels.battleships.io;
 
 import com.windels.battleships.controller.GameBoard;
+import java.util.List;
 
 public interface Output {
 
@@ -11,4 +12,6 @@ public interface Output {
         void displayGameControl(String introText);
         
         void displayHelpMenu(String helpText);
+        
+        void displaySavedGames(List<String> savedGames);
 }

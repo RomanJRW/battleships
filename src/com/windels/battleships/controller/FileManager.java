@@ -21,6 +21,7 @@ public class FileManager {
 		directory = Paths.get("", "src", "SaveFiles").toAbsolutePath();
 	}
 	
+        //NOT CURRENTLY USED
 	public String getSaveDirectoryName()	{
 		String dirName = directory.toString();
 		return dirName;
@@ -75,7 +76,6 @@ public class FileManager {
 			    	}
 			    }
 			} catch (IOException ex) {
-			    ex.printStackTrace();
 			    return new ArrayList<Path>();
 			}
 		}

@@ -2,6 +2,7 @@ package com.windels.battleships.io.impl;
 
 import com.windels.battleships.controller.GameBoard;
 import com.windels.battleships.io.Output;
+import java.util.List;
 
 public class ConsoleOutput implements Output {
 		
@@ -26,5 +27,12 @@ public class ConsoleOutput implements Output {
     @Override
     public void displayHelpMenu(String helpText) {
         System.out.println(helpText);
+    }
+
+    @Override
+    public void displaySavedGames(List<String> savedGames) {
+        for (int i = 0; i < savedGames.size(); i++) {
+            System.out.println(savedGames.get(i));
+        }
     }
 }
