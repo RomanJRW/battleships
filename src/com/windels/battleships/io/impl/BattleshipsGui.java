@@ -84,6 +84,11 @@ public class BattleshipsGui extends javax.swing.JFrame implements Input, Output 
         saveGameButton.setText("Save Game");
 
         helpButton.setText("Help");
+        helpButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                helpButtonActionPerformed(evt);
+            }
+        });
 
         exitGameButton.setText("Exit Game");
         exitGameButton.addActionListener(new java.awt.event.ActionListener() {
@@ -266,6 +271,11 @@ public class BattleshipsGui extends javax.swing.JFrame implements Input, Output 
         notifyCommand();
     }//GEN-LAST:event_exitGameButtonActionPerformed
 
+    private void helpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpButtonActionPerformed
+        userComm = new Command(ConsoleCommandManager.HELPMENU);
+        notifyCommand();
+    }//GEN-LAST:event_helpButtonActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -320,16 +330,13 @@ public class BattleshipsGui extends javax.swing.JFrame implements Input, Output 
 
     @Override
     public String getHelpText() {
-        return null;
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "Use the menu options on the right hand side to get around."
+                + "To take a shot, simply click on the grid location!";
     }
 
     @Override
     public void renderGameBoard(GameBoard gameBoard) {
         gridOutput.setText(ConsoleGridGenerator.generateSmallGrid(gameBoard));
-        //gridOutput.append("\n\n"); FOR TESTING
-        //gridOutput.append(ConsoleGridGenerator.generateLargeGrid(gameBoard)); FOR TESTING
-        
         remainingShipsCounter.setText(String.valueOf(gameBoard.getNumberOfRemainingShips()));
         shotsTakenCounter.setText(String.valueOf(gameBoard.getTotalShotsTaken()));
     }
@@ -348,7 +355,8 @@ public class BattleshipsGui extends javax.swing.JFrame implements Input, Output 
 
     @Override
     public void displayHelpMenu(String helpText) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        JOptionPane.showMessageDialog(this, helpText,
+                "Battleshite", JOptionPane.PLAIN_MESSAGE);
     }
     
     //End of Josh custom methods
