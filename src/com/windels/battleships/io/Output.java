@@ -9,7 +9,7 @@ public interface Output {
 
 	void displayInGameText(String text);
 	
-        void displayGameControl(String introText);
+        void displayGameControlText(String introText);
         
         void displayHelpMenu(String helpText);
         

@@ -18,7 +18,7 @@ public class ConsoleOutput implements Output {
     }
 
     @Override
-    public void displayGameControl(String gameControlText) {
+    public void displayGameControlText(String gameControlText) {
         System.out.println("****************************************************************" + "\n"
         + gameControlText
         + "****************************************************************" + "\n");

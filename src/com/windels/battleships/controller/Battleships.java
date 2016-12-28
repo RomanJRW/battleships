@@ -23,7 +23,7 @@ public class Battleships {
     }
 
     public void run() {
-        output.displayGameControl(GameText.INTRO.getText());
+        output.displayGameControlText(GameText.INTRO.getText());
         helpMenu();
         while (gameState != GameState.EXIT) {
             Command userCommand = input.getUserInput();

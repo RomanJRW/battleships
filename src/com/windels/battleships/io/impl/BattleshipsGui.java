@@ -320,6 +320,12 @@ public class BattleshipsGui extends javax.swing.JFrame implements Input, Output 
     //End of custom variable declaration
     
     //Start of Josh custom methods
+    private synchronized void notifyCommand() {
+        notifyAll();
+    }
+    
+    
+    //INPUT METHODS BELOW
     @Override
     public synchronized Command getUserInput()   {
         while (userComm == null) {
@@ -333,13 +339,11 @@ public class BattleshipsGui extends javax.swing.JFrame implements Input, Output 
         return givenComm;
     }
     
-    private synchronized void notifyCommand() {
-        notifyAll();
-    }
     
     @Override
     public void close() {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //GUI closes automatically with System exit called from Battleships at the mo.
+        //Can change in future if necessary.
     }
 
     @Override
@@ -349,6 +353,8 @@ public class BattleshipsGui extends javax.swing.JFrame implements Input, Output 
                 + "on the grid location!";
     }
 
+    
+    //OUTPUT METHODS BELOW
     @Override
     public void renderGameBoard(GameBoard gameBoard) {
         gridOutput.setText(ConsoleGridGenerator.generateSmallGrid(gameBoard));
@@ -363,7 +369,7 @@ public class BattleshipsGui extends javax.swing.JFrame implements Input, Output 
     }
 
     @Override
-    public void displayGameControl(String gameControlText) {
+    public void displayGameControlText(String gameControlText) {
         JOptionPane.showMessageDialog(this, gameControlText,
                 "Battleshite", JOptionPane.PLAIN_MESSAGE);
     }
@@ -373,11 +379,12 @@ public class BattleshipsGui extends javax.swing.JFrame implements Input, Output 
         JOptionPane.showMessageDialog(this, helpText,
                 "Battleshite", JOptionPane.PLAIN_MESSAGE);
     }
-    
-    //End of Josh custom methods
 
     @Override
     public void displaySavedGames(List<String> savedGames) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+        
+    //End of Josh custom methods
 }
