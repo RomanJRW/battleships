@@ -3,20 +3,9 @@ package com.windels.battleships.controller;
 public enum GameText {
 	
 	INTRO(new StringBuilder("")
-		.append("\n")
-		.append("           ****************************************************************" + "\n")
-		.append("           *              Welcome to Battleshite v3, Captain.             *" + "\n")
-		.append("           *     Your objective is to shoot all 4 of the enemy ships.     *" + "\n")
-		.append("           *       When prompted, enter a coordinate from the grid        *" + "\n")
-		.append("           *        Try to use as few shots as you can. Good Luck!        *" + "\n")
-		.append("           ****************************************************************" + "\n")
-		.toString()),
-			
-	MAINMENU(new StringBuilder("")
-		.append("\n")
-		.append("           ****************************************************************" + "\n")
-		.append("           *                   You are at the main menu.                  *" + "\n")
-		.append("           ****************************************************************" + "\n")
+		.append("Welcome to Battleshite, Captain." + "\n")
+		.append("Your objective is to shoot all of the enemy ships." + "\n")
+		.append("Try to use as few shots as you can. Good Luck!" + "\n")
 		.toString()),
 	
 	SAVEERROR("There was a problem when saving the game. Game not saved"),
@@ -25,7 +14,7 @@ public enum GameText {
 	
 	INVALIDSHOT("That wasn't a valid shot, you fool!"),
 	
-	SHOTPROMPT("Where would you like to shoot next captain? (ie. A1, D4)"),
+	SHOTPROMPT("Where would you like to shoot captain?"),
 	
 	SAVESUCCESS("Game saved successfully"),
 	
@@ -38,10 +27,8 @@ public enum GameText {
 	INVALIDCOMMAND("Command not valid"),
 	
 	GAMEENDING(new StringBuilder()
-		.append("           ****************************************************************" + "\n")
-		.append("           *                  Congratulations, Captain!                   *" + "\n")
-		.append("           *     You have located and destroyed all of the enemy ships    *" + "\n")
-		.append("           ****************************************************************" + "\n")
+		.append("Congratulations, Captain!" + "\n")
+		.append("You have located and destroyed all of the enemy ships" + "\n")
 		.toString()),
         
         NEWGAME("New game started");
