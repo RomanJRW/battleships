@@ -11,7 +11,10 @@ import com.windels.battleships.io.Output;
 import java.io.File;
 import java.util.List;
 import javax.swing.JFileChooser;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.ListSelectionModel;
 
 
 /**
@@ -44,7 +47,8 @@ public class BattleshipsGui extends javax.swing.JFrame implements Input, Output 
         newGameButton = new javax.swing.JButton();
         helpButton = new javax.swing.JButton();
         exitGameButton = new javax.swing.JButton();
-        fileManagerButton = new javax.swing.JButton();
+        saveGameButton = new javax.swing.JButton();
+        loadGameButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         outputTextPanel = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -98,10 +102,17 @@ public class BattleshipsGui extends javax.swing.JFrame implements Input, Output 
             }
         });
 
-        fileManagerButton.setText("Save/Load Game");
-        fileManagerButton.addActionListener(new java.awt.event.ActionListener() {
+        saveGameButton.setText("Save Game");
+        saveGameButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fileManagerButtonActionPerformed(evt);
+                saveGameButtonActionPerformed(evt);
+            }
+        });
+
+        loadGameButton.setText("Load Game");
+        loadGameButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loadGameButtonActionPerformed(evt);
             }
         });
 
@@ -115,21 +126,24 @@ public class BattleshipsGui extends javax.swing.JFrame implements Input, Output 
                     .addComponent(exitGameButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(helpButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(newGameButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(fileManagerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(saveGameButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(loadGameButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         buttonPanelLayout.setVerticalGroup(
             buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(buttonPanelLayout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, buttonPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(newGameButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(fileManagerButton)
+                .addComponent(loadGameButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(saveGameButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(helpButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(exitGameButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jLabel1.setText("Battleshite");
@@ -231,7 +245,7 @@ public class BattleshipsGui extends javax.swing.JFrame implements Input, Output 
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -240,13 +254,13 @@ public class BattleshipsGui extends javax.swing.JFrame implements Input, Output 
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(shootButton)
                             .addComponent(shotTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(buttonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(battleShipsGrid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(outputTextPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addComponent(outputTextPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
 
         pack();
@@ -274,7 +288,7 @@ public class BattleshipsGui extends javax.swing.JFrame implements Input, Output 
         notifyCommand();
     }//GEN-LAST:event_helpButtonActionPerformed
 
-    private void fileManagerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileManagerButtonActionPerformed
+    private void saveGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveGameButtonActionPerformed
         
         
         /* ORIGINAL FILE LOAD CODE, MIGHT BE USEFUL
@@ -289,7 +303,12 @@ public class BattleshipsGui extends javax.swing.JFrame implements Input, Output 
            // log.append("Open command cancelled by user." + newline);
         } 
         */
-    }//GEN-LAST:event_fileManagerButtonActionPerformed
+    }//GEN-LAST:event_saveGameButtonActionPerformed
+
+    private void loadGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadGameButtonActionPerformed
+        userComm = new Command(ConsoleCommandManager.LISTGAMES);
+        notifyCommand();
+    }//GEN-LAST:event_loadGameButtonActionPerformed
 
     
 
@@ -299,15 +318,16 @@ public class BattleshipsGui extends javax.swing.JFrame implements Input, Output 
     private javax.swing.JPanel counterPanel;
     private javax.swing.JTextArea displayGameTextArea;
     private javax.swing.JButton exitGameButton;
-    private javax.swing.JButton fileManagerButton;
     private javax.swing.JTextArea gridOutput;
     private javax.swing.JButton helpButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JButton loadGameButton;
     private javax.swing.JButton newGameButton;
     private javax.swing.JPanel outputTextPanel;
     private javax.swing.JTextField remainingShipsCounter;
+    private javax.swing.JButton saveGameButton;
     private javax.swing.JLabel shipsRemainingCounterLabelText;
     private javax.swing.JButton shootButton;
     private javax.swing.JTextField shotTextField;
@@ -369,20 +389,29 @@ public class BattleshipsGui extends javax.swing.JFrame implements Input, Output 
     }
 
     @Override
-    public void displayGameControlText(String gameControlText) {
+    public void displayGameAdminText(String gameControlText) {
         JOptionPane.showMessageDialog(this, gameControlText,
                 "Battleshite", JOptionPane.PLAIN_MESSAGE);
     }
 
     @Override
-    public void displayHelpMenu(String helpText) {
-        JOptionPane.showMessageDialog(this, helpText,
-                "Battleshite", JOptionPane.PLAIN_MESSAGE);
-    }
-
-    @Override
     public void displaySavedGames(List<String> savedGames) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+    }
+    
+    public String getFileName(List<String> savedGames) {
+        JList list = new JList(savedGames.toArray());
+        list.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        String selection = (String) JOptionPane.showInputDialog(
+                this,
+                "Select a saved game",
+                "Load game",
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                savedGames.toArray(),
+                savedGames.toArray()[0]);
+        System.out.println(selection);
+        return selection;
     }
     
         

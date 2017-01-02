@@ -16,14 +16,14 @@ public class Battleships {
     private final int BOARD_WIDTH = 10;
 
     public Battleships(Input anInput, Output anOutput) {
-        this.input = anInput;
-        this.output = anOutput;
-        this.fm = new FileManager();
+        input = anInput;
+        output = anOutput;
+        fm = new FileManager();
         gameState = GameState.INTRO;
     }
 
     public void run() {
-        output.displayGameControlText(GameText.INTRO.getText());
+        output.displayGameAdminText(GameText.INTRO.getText());
         helpMenu();
         while (gameState != GameState.EXIT) {
             Command userCommand = input.getUserInput();
@@ -80,9 +80,7 @@ public class Battleships {
     }
 
     private void listSavedGames() {
-        for (int i = 0; i < fm.getFilesNamesList().size(); i++) {
-            output.displayInGameText(fm.getFilesNamesList().get(i));
-        }
+        output.displaySavedGames(fm.getFilesNamesList());
     }
 
     private void loadExistingGameFromFile(String fileName) {
@@ -133,7 +131,7 @@ public class Battleships {
     }
 
     private void helpMenu() {
-        output.displayHelpMenu(input.getHelpText());
+        output.displayGameAdminText(input.getHelpText());
     }
 
     private void exitGame() {

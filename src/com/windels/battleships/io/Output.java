@@ -5,13 +5,11 @@ import java.util.List;
 
 public interface Output {
 
-	void renderGameBoard(GameBoard gameBoard);
+    void renderGameBoard(GameBoard gameBoard);
 
-	void displayInGameText(String text);
-	
-        void displayGameControlText(String introText);
-        
-        void displayHelpMenu(String helpText);
-        
-        void displaySavedGames(List<String> savedGames);
+    void displayInGameText(String text);
+
+    void displayGameAdminText(String introText);
+
+    void displaySavedGames(List<String> savedGames);
 }

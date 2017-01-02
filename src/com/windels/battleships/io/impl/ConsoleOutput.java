@@ -18,15 +18,10 @@ public class ConsoleOutput implements Output {
     }
 
     @Override
-    public void displayGameControlText(String gameControlText) {
+    public void displayGameAdminText(String gameControlText) {
         System.out.println("****************************************************************" + "\n"
         + gameControlText
         + "****************************************************************" + "\n");
-    }
-
-    @Override
-    public void displayHelpMenu(String helpText) {
-        System.out.println(helpText);
     }
 
     @Override
