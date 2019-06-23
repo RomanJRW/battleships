@@ -1,0 +1,13 @@
+version: 1
+update_configs:
+- package_manager: "java:maven"
+  directory: "/"
+  update_schedule: "daily"
+  target_branch: "master"
+  default_reviewers:
+  - "RomanJRW"
+  default_labels:
+  - "dependencies"
+  allowed_updates:
+  - match:
+      update_type: "security"
